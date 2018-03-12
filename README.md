@@ -1,6 +1,6 @@
 # smart-user
 
-smart jobs platform user service
+smart jobs platform jobs service
 
 ## QuickStart
 
