@@ -16,11 +16,15 @@ module.exports = app => {
   router.get('/api/jobinfo/fetch', controller.api.jobinfo.fetch);
   router.post('/api/jobinfo/create', controller.api.jobinfo.create);
   router.post('/api/jobinfo/update', controller.api.jobinfo.update);
-  // // 校园招聘会
-  // router.post('/api/jobfair/list', controller.api.jobfair.list);
-  // router.post('/api/jobfair/fetch', controller.api.jobfair.fetch);
-  // router.post('/api/jobfair/enroll', controller.api.jobfair.apply);// 学生报名参加
-  // router.post('/api/jobfair/apply', controller.api.jobfair.register);// 企业预定展位
+  // 校园招聘会
+  router.get('/api/jobfair/query', controller.api.jobfair.query);// 查询已发布的信息数据列表
+  router.get('/api/jobfair/simple', controller.api.jobfair.simple);// 查询已发布的信息概要列表
+  router.get('/api/jobfair/fetch', controller.api.jobfair.fetch);// 获取信息详情
+  // router.post('/api/jobfair/ticket/apply', controller.api.jobfair.ticket_apply);// 学生报名参加
+  // router.post('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 学生申请的招聘会门票列表
+  router.post('/api/jobfair/corp/apply', controller.api.jobfair.corp_apply);// 企业预定展位
+  router.post('/api/jobfair/corp/update', controller.api.jobfair.corp_update);// 企业预定展位信息修改
+  router.get('/api/jobfair/corp/mylist', controller.api.jobfair.corp_mylist);// 企业参与的招聘会信息列表
   // // 校园宣讲会
   // router.get('/api/campustalk/list', controller.api.campus.list);
   // router.get('/api/campustalk/fetch', controller.api.campus.fetch);

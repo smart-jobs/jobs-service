@@ -1,16 +1,15 @@
 'use strict';
 /**
- * 招聘会
+ * 校园招聘会
  */
-const Controller = require('egg').Controller;
+const meta = require('./jobfair.json');
+const { CrudController, NafController } = require('naf-framework-mongoose').Controllers;
 
-class JobfairController extends Controller {
-  async index() {
-    this.ctx.body = '请通过服务接口进行调用';
-  }
-  async list() {
-    this.ctx.body = 'no implements！';
+class JobfairController extends NafController {
+  constructor(ctx) {
+    super(ctx);
+    this.service = this.ctx.service.api.jobfair;
   }
 }
 
-module.exports = JobfairController;
+module.exports = CrudController(JobfairController, meta);

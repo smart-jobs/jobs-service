@@ -1,0 +1,51 @@
+{
+  "query": {
+    "parameters": {},
+    "service": "query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "projection": {
+        "content": 0
+      }
+    }
+  },
+  "simple": {
+    "parameters": {},
+    "service": "query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "projection": {
+        "title": 1,
+        "school": 1,
+        "meta.createdAt": 1
+      }
+    }
+  },
+  "fetch": {
+    "query": ["_id"]
+  },
+  "corp_apply": {
+    "parameters": {
+      "query": ["corp.id", "corp.name", "_id"]
+    },
+    "requestBody": ["jobs"]
+  },
+  "corp_update": {
+    "parameters": {
+      "query": ["corp.id", "_id"]
+    },
+    "requestBody": ["jobs"]
+  },
+  "corp_mylist": {
+    "parameters": {
+      "query": ["corp.id"]
+    },
+    "options": {
+      "query": ["skip", "limit"]
+    }
+  }
+}
