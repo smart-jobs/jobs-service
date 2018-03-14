@@ -9,7 +9,7 @@
   "dependencies": {
     "egg": "^2.4.1",
     "egg-scripts": "^2.5.1",
-    "naf-framework-mongoose": "^0.1.4"
+    "naf-framework-mongoose": "^0.1.9"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -26,8 +26,8 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=service-tmpl",
-    "stop": "egg-scripts stop --title=service-tmpl",
+    "start": "egg-scripts start --daemon --title=service-jobs",
+    "stop": "egg-scripts stop --title=service-jobs",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

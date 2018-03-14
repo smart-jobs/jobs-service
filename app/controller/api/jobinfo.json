@@ -1,0 +1,64 @@
+{
+  "create": {
+    "parameters": {
+      "query": ["corp.id", "corp.name"]
+    },
+    "requestBody": ["title", "content", "city"]
+  },
+  "update": {
+    "parameters": {
+      "query": ["_id", "corp.id"]
+    },
+    "requestBody": ["title", "content", "city"]
+  },
+  "list": {
+    "parameters": {
+      "query": ["corp.id"]
+    },
+    "service": "query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "projection": {
+        "content": 0
+      }
+    }
+  },
+  "query": {
+    "parameters": {
+      "query": ["corp.id"],
+      "options": {
+        "status": "0"
+      }
+    },
+    "service": "query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "projection": {
+        "content": 0
+      }
+    }
+  },
+  "simple": {
+    "parameters": {
+      "query": ["corp.id"]
+    },
+    "service": "query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "projection": {
+        "title": 1,
+        "corp.name": 1,
+        "meta.createdAt": 1
+      }
+    }
+  },
+  "fetch": {
+    "query": ["_id"]
+  }
+}

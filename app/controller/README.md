@@ -34,7 +34,7 @@ module.exports = CrudController(CategoryController, meta);
     "options": {
       "sort": ["order", "code"]
     }
-},
+  },
   "fetch": {
     "query": ["id"]
   }
