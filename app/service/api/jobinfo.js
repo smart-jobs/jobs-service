@@ -13,12 +13,6 @@ class JobinfoService extends CrudService {
     this.model = this.mInfo.model;
   }
 
-  // async query({ skip, limit, order } = {}, data = {}) {
-  //   // const rs = await this._find(trimData(data), null, trimData({ skip, limit, sort: order && { [order]: 1 } }));
-  //   const rs = await this.model.find({}, null, {}).exec();
-  //   return rs;
-  // }
-
   async create({ 'corp.id': corpid, 'corp.name': corpname }, { title, content, city }) {
     // TODO: coreid和corpname应该从token中获取，此处暂时由参数传入
     assert(corpid, '企业ID不能为空');

@@ -1,4 +1,7 @@
 {
+  "create": {
+    "requestBody": ["type", "title", "content", "city", "address", "time"]
+  },
   "query": {
     "parameters": {},
     "service": "query",
@@ -27,25 +30,5 @@
   },
   "fetch": {
     "query": ["_id"]
-  },
-  "corp_apply": {
-    "parameters": {
-      "query": ["corp.id", "corp.name", "_id"]
-    },
-    "requestBody": ["jobs"]
-  },
-  "corp_update": {
-    "parameters": {
-      "query": ["corp.id", "_id"]
-    },
-    "requestBody": ["jobs"]
-  },
-  "corp_mylist": {
-    "parameters": {
-      "query": ["corp.id"]
-    },
-    "options": {
-      "query": ["skip", "limit"]
-    }
   }
 }

@@ -1,0 +1,50 @@
+
+###
+# 查询所有招聘会信息
+#GET http://localhost:7001/admin/jobfair/query?skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobfair/query?skip=0&limit=10 HTTP/1.1
+Accept: application/json
+
+###
+# 简要信息列表
+#GET http://localhost:7001/admin/jobfair/simple?corp.id=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobfair/simple?corp.id=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+Accept: application/json
+
+###
+# 创建招聘会信息
+POST http://localhost:7001/admin/jobfair/create HTTP/1.1
+#POST http://oa.chinahuian.cn/jobs/jobfair/create?corp.id=5a9e2ed7a44cd66c81cfcf61&corp.name=福瑞科技 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "type": "网络招聘会",
+  "title": "福瑞大学2018年春季网络招聘会",
+  "content": "<p>福瑞大学2018年春季网络招聘会</p>",
+  "city": {
+    "code": "220100",
+    "name": "吉林省长春市"
+  },
+  "time": "2018年3月~5月",
+  "address": "福瑞大学分站"
+}
+
+###
+# 修改招聘信息
+#POST http://localhost:7001/admin/jobfair/update?corp.id=5a9e2f4bb357a826385194ca&_id=5aa89cfb3fb2dc3fa87f7337 HTTP/1.1
+POST http://oa.chinahuian.cn/jobs/jobfair/update?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aa8b10e755c9e107d568242 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "content": "<p>福瑞科技2018年校园招聘...</p>"
+}
+
+###
+# 获取招聘信息
+#GET http://localhost:7001/admin/jobfair/fetch?_id=5aa897caaeee154a941d4e4a HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobfair/fetch?_id=5aa8b10e755c9e107d568242 HTTP/1.1
+Accept: application/json
+
+
