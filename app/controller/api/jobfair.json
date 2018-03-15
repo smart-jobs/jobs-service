@@ -40,6 +40,9 @@
     },
     "requestBody": ["jobs"]
   },
+  "corp_fetch": {
+    "query": ["corp.id", "_id"]
+  },
   "corp_mylist": {
     "parameters": {
       "query": ["corp.id"]

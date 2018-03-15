@@ -28,6 +28,8 @@ const corpInfoSchema = new Schema({
 }, { timestamps: true });
 corpInfoSchema.index({ name: 1 });
 corpInfoSchema.index({ name: 1, status: 1 });
+corpInfoSchema.index({ id: 1 });
+corpInfoSchema.index({ id: 1, status: 1 });
 
 // 校园招聘会信息
 const SchemaDefine = {

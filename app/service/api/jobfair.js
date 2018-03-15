@@ -43,7 +43,8 @@ class JobinfoService extends CrudService {
     // TODO:保存数据
     entity.corps.push({ id: corpid, name: corpname, jobs, status: JobfairCorpStatus.PENDING });
     await entity.save();
-    return 'updated';
+
+    return await this.corp_fetch({ _id, 'corp.id': corpid });
   }
 
   async corp_update({ _id, 'corp.id': corpid }, { jobs }) {
@@ -70,7 +71,27 @@ class JobinfoService extends CrudService {
     // TODO:保存数据
     corp.jobs = jobs;
     await entity.save();
-    return 'updated';
+
+    return await this.corp_fetch({ _id, 'corp.id': corpid });
+  }
+
+  async corp_fetch({ _id, 'corp.id': corpid }) {
+    // TODO: coreid应该从token中获取，此处暂时由参数传入
+    assert(corpid, '企业ID不能为空');
+    // 检查数据
+    assert(_id, '_id不能为空');
+
+    // TODO:检查数据是否存在
+    const entity = await this.mFair._findOne({ _id });
+    if (isNullOrUndefined(entity)) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
+    }
+    // TODO: 检查是否已申请
+    const corp = entity.corps.find(p => p.id === corpid);
+    if (isNullOrUndefined(corp)) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '还未申请招聘会展位');
+    }
+    return corp;
   }
 
   async corp_mylist({ 'corp.id': corpid }, { skip = 0, limit = 100 }) {
