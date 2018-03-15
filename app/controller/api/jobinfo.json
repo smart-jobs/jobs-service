@@ -20,6 +20,7 @@
       "query": ["skip", "limit"],
       "sort": ["meta.createAt"],
       "desc": true,
+      "count": true,
       "projection": {
         "content": 0
       }
@@ -37,6 +38,7 @@
       "query": ["skip", "limit"],
       "sort": ["meta.createAt"],
       "desc": true,
+      "count": true,
       "projection": {
         "content": 0
       }
@@ -51,6 +53,7 @@
       "query": ["skip", "limit"],
       "sort": ["meta.createAt"],
       "desc": true,
+      "count": true,
       "projection": {
         "title": 1,
         "corp.name": 1,

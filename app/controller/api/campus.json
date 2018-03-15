@@ -6,7 +6,6 @@
       "query": ["skip", "limit"],
       "sort": ["meta.createAt"],
       "desc": true,
-      "count": true,
       "projection": {
         "content": 0
       }
@@ -19,7 +18,6 @@
       "query": ["skip", "limit"],
       "sort": ["meta.createAt"],
       "desc": true,
-      "count": true,
       "projection": {
         "tenant": 1,
         "title": 1,
