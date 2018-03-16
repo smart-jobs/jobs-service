@@ -1,8 +1,8 @@
 
 ###
 # 查询所有招聘信息
-GET http://localhost:7001/api/jobinfo/query?skip=0&limit=10 HTTP/1.1
-#GET http://oa.chinahuian.cn/jobs/jobinfo/query?skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/api/jobinfo/query?skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobinfo/query?skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###

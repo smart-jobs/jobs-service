@@ -46,7 +46,10 @@
   },
   "simple": {
     "parameters": {
-      "query": ["corp.id"]
+      "query": ["corp.id"],
+      "options": {
+        "status": "0"
+      }
     },
     "service": "query",
     "options": {
