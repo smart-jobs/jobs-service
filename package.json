@@ -1,7 +1,7 @@
 {
-  "name": "service-template",
+  "name": "jobs-service",
   "version": "1.0.0",
-  "description": "smart jobs platform service template",
+  "description": "smart jobs platform business service",
   "private": true,
   "egg": {
     "framework": "naf-framework-mongoose"
