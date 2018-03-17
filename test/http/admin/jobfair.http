@@ -20,7 +20,7 @@ Accept: application/json
 
 {
   "type": "网络招聘会",
-  "title": "福瑞大学2018年春季网络招聘会",
+  "subject": "福瑞大学2018年春季网络招聘会",
   "content": "<p>福瑞大学2018年春季网络招聘会</p>",
   "city": {
     "code": "220100",

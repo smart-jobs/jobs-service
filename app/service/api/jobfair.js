@@ -105,7 +105,7 @@ class JobinfoService extends CrudService {
     // TODO: 转换输出数据格式
     return rs.map(p => ({
       _id: p._id,
-      title: p.title,
+      subject: p.subject,
       createAt: p.meta.createdAt,
       school: p.school,
     }));

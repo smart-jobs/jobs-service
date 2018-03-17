@@ -35,7 +35,7 @@ corpInfoSchema.index({ id: 1, status: 1 });
 const SchemaDefine = {
   tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
   status: { type: String, default: '0', maxLength: 64 }, // 状态: 0-开发申请；1-关闭；2-进行中；
-  title: { type: String, require: true, maxLength: 128 }, // 标题
+  subject: { type: String, require: true, maxLength: 128 }, // 标题
   content: { type: String, require: true, maxLength: 10240 }, // 详情
   type: { type: String, required: true, maxLength: 64 }, // 招聘会类型
   city: codeSchema, // 举办城市

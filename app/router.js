@@ -11,8 +11,8 @@ module.exports = app => {
   // 校园招聘信息
   // console.log(controller);
   router.get('/api/jobinfo/query', controller.api.jobinfo.query); // 查询所有已发布的信息
-  router.get('/api/jobinfo/list', controller.api.jobinfo.list); // 查询当前用户提交的信息
   router.get('/api/jobinfo/simple', controller.api.jobinfo.simple); // 查询所有已发布的信息，简单信息
+  router.get('/api/jobinfo/list', controller.api.jobinfo.list); // 查询当前用户提交的信息
   router.get('/api/jobinfo/fetch', controller.api.jobinfo.fetch);
   router.post('/api/jobinfo/create', controller.api.jobinfo.create);
   router.post('/api/jobinfo/update', controller.api.jobinfo.update);
@@ -26,10 +26,13 @@ module.exports = app => {
   router.get('/api/jobfair/corp/mylist', controller.api.jobfair.corp_mylist);// 企业参与的招聘会信息列表
   // router.post('/api/jobfair/ticket/apply', controller.api.jobfair.ticket_apply);// 学生报名参加
   // router.post('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 学生申请的招聘会门票列表
-  // // 校园宣讲会
-  // router.get('/api/campustalk/list', controller.api.campus.list);
-  // router.get('/api/campustalk/fetch', controller.api.campus.fetch);
-  // router.post('/api/campustalk/apply', controller.api.campus.create);// 企业申请宣讲会
+  // 校园宣讲会
+  router.get('/api/campus/query', controller.api.campus.query); // 查询所有已发布的信息
+  router.get('/api/campus/simple', controller.api.campus.simple); // 查询所有已发布的信息，简单信息
+  router.get('/api/campus/list', controller.api.campus.list); // 查询当前用户提交的信息
+  router.get('/api/campus/fetch', controller.api.campus.fetch);
+  router.post('/api/campus/create', controller.api.campus.create);
+  router.post('/api/campus/update', controller.api.campus.update);
 
   // 管理接口
   // 校园招聘信息

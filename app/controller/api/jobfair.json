@@ -22,7 +22,7 @@
       "count": true,
       "projection": {
         "tenant": 1,
-        "title": 1,
+        "subject": 1,
         "meta.createdAt": 1
       }
     }
