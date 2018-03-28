@@ -3,9 +3,10 @@
  * 校园宣讲会
  */
 const meta = require('./campus.json');
-const { CrudController, NafController } = require('naf-framework-mongoose').Controllers;
+const { Controller } = require('egg');
+const { CrudController } = require('naf-framework-mongoose').Controllers;
 
-class CampusTalkController extends NafController {
+class CampusTalkController extends Controller {
   constructor(ctx) {
     super(ctx);
     this.service = this.ctx.service.api.campus;

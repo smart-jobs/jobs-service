@@ -3,9 +3,10 @@
  * 校园招聘信息
  */
 const meta = require('./jobinfo.json');
-const { CrudController, NafController } = require('naf-framework-mongoose').Controllers;
+const { Controller } = require('egg');
+const { CrudController } = require('naf-framework-mongoose').Controllers;
 
-class JobinfoController extends NafController {
+class JobinfoController extends Controller {
   constructor(ctx) {
     super(ctx);
     this.service = this.ctx.service.api.jobinfo;

@@ -3,9 +3,10 @@
  * 校园招聘会
  */
 const meta = require('./jobfair.json');
-const { CrudController, NafController } = require('naf-framework-mongoose').Controllers;
+const { Controller } = require('egg');
+const { CrudController } = require('naf-framework-mongoose').Controllers;
 
-class JobfairController extends NafController {
+class JobfairController extends Controller {
   constructor(ctx) {
     super(ctx);
     this.service = this.ctx.service.api.jobfair;
