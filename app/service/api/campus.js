@@ -2,7 +2,8 @@
 
 const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
-const { isNullOrUndefined, isArray } = require('naf-core').Util;
+const { isNullOrUndefined } = require('naf-core').Util;
+const { isArray } = require('lodash');
 const { CrudService } = require('naf-framework-mongoose').Services;
 const { CampusTalkStatus } = require('../../util/constants');
 
