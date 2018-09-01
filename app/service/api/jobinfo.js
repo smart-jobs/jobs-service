@@ -3,14 +3,13 @@
 const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { isNullOrUndefined } = require('naf-core').Util;
-const { CrudService } = require('naf-framework-mongoose').Services;
+const { CrudService } = require('naf-framework-mongoose/lib/service');
 const { JobinfoStatus } = require('../../util/constants');
 
 class JobinfoService extends CrudService {
   constructor(ctx) {
     super(ctx);
-    this.mInfo = this._model(ctx.model.Jobinfo);
-    this.model = this.mInfo.model;
+    this.model = this.ctx.model.Jobinfo;
   }
 
   async create({ 'corp.id': corpid, 'corp.name': corpname }, { title, content, city }) {
@@ -25,7 +24,7 @@ class JobinfoService extends CrudService {
     const corp = { id: corpid, name: corpname };
 
     // TODO:保存数据
-    const res = await this.mInfo._create({ title, content, city, corp, status: JobinfoStatus.PENDING });
+    const res = await this.model.create({ title, content, city, corp, status: JobinfoStatus.PENDING });
     return res;
   }
 
@@ -36,7 +35,7 @@ class JobinfoService extends CrudService {
     assert(_id, '_id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.mInfo._findOne({ _id, 'corp.id': corpid });
+    const entity = await this.model.findOne({ _id, 'corp.id': corpid }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }
@@ -46,7 +45,7 @@ class JobinfoService extends CrudService {
     }
 
     // TODO:保存数据
-    const res = await this.mInfo._findByIdAndUpdate(_id, { title, content, city });
+    const res = await this.model.findByIdAndUpdate(_id, { title, content, city }).exec();
     return res;
   }
 

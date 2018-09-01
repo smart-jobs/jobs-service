@@ -1,12 +1,11 @@
 'use strict';
 
-const { CrudService } = require('naf-framework-mongoose').Services;
+const { CrudService } = require('naf-framework-mongoose/lib/service');
 
 class JobinfoService extends CrudService {
   constructor(ctx) {
     super(ctx);
-    this.mFair = this._model(ctx.model.Jobfair);
-    this.model = this.mFair.model;
+    this.model = this.ctx.model.Jobfair;
   }
 
 }

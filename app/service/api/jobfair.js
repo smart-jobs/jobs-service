@@ -3,18 +3,17 @@
 const assert = require('assert');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { isNullOrUndefined } = require('naf-core').Util;
-const { CrudService } = require('naf-framework-mongoose').Services;
+const { CrudService } = require('naf-framework-mongoose/lib/service');
 const { JobfairStatus, JobfairCorpStatus } = require('../../util/constants');
 
 class JobinfoService extends CrudService {
   constructor(ctx) {
     super(ctx);
-    this.mFair = this._model(ctx.model.Jobfair);
-    this.model = this.mFair.model;
+    this.model = this.ctx.model.Jobfair;
   }
 
   // async query({ skip, limit, order } = {}, data = {}) {
-  //   // const rs = await this._find(trimData(data), null, trimData({ skip, limit, sort: order && { [order]: 1 } }));
+  //   // const rs = await this.model.find(trimData(data), null, trimData({ skip, limit, sort: order && { [order]: 1 } })).exec();
   //   const rs = await this.model.find({}, null, {}).exec();
   //   return rs;
   // }
@@ -27,7 +26,7 @@ class JobinfoService extends CrudService {
     assert(_id, '_id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.mFair._findOne({ _id });
+    const entity = await this.model.findOne({ _id }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
     }
@@ -54,7 +53,7 @@ class JobinfoService extends CrudService {
     assert(_id, '_id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.mFair._findOne({ _id });
+    const entity = await this.model.findOne({ _id }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
     }
@@ -82,7 +81,7 @@ class JobinfoService extends CrudService {
     assert(_id, '_id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.mFair._findOne({ _id });
+    const entity = await this.model.findOne({ _id }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
     }
@@ -99,9 +98,9 @@ class JobinfoService extends CrudService {
     assert(corpid, '企业ID不能为空');
 
     // TODO:检查数据是否存在
-    const rs = await this.mFair._find({ corps: { $elemMatch: { id: corpid } } },
+    const rs = await this.model.find({ corps: { $elemMatch: { id: corpid } } },
       null,
-      { skip, limit, sort: { 'meta.createdAt': -1 } });
+      { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
     // TODO: 转换输出数据格式
     return rs.map(p => ({
       _id: p._id,
