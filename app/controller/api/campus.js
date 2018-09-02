@@ -4,7 +4,7 @@
  */
 const meta = require('./campus.json');
 const { Controller } = require('egg');
-const { CrudController } = require('naf-framework-mongoose').Controllers;
+const { CrudController } = require('naf-framework-mongoose/lib/controller');
 
 class CampusTalkController extends Controller {
   constructor(ctx) {

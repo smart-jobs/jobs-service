@@ -4,7 +4,7 @@
  */
 const meta = require('./jobinfo.json');
 const { Controller } = require('egg');
-const { CrudController } = require('naf-framework-mongoose').Controllers;
+const { CrudController } = require('naf-framework-mongoose/lib/controller');
 
 class JobinfoController extends Controller {
   constructor(ctx) {
