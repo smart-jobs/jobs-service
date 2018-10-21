@@ -19,10 +19,11 @@ module.exports = appInfo => {
   config.mongoose = {
     url: 'mongodb://localhost:27017/jobs',
     options: {
-      useMongoClient: true,
       user: 'root',
       pass: 'Ziyouyanfa#@!',
       authSource: 'admin',
+      useNewUrlParser: true,
+      useCreateIndex: true,
     },
   };
 
