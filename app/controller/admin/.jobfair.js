@@ -1,6 +1,6 @@
-{
+module.exports = {
   "create": {
-    "requestBody": ["type", "title", "content", "city", "address", "time"]
+    "requestBody": ["type", "subject", "content", "city", "address", "time", "date", "unit"]
   },
   "query": {
     "parameters": {},
@@ -31,4 +31,4 @@
   "fetch": {
     "query": ["_id"]
   }
-}
+};

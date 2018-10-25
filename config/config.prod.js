@@ -13,13 +13,6 @@ module.exports = () => {
   // mongoose config
   config.mongoose = {
     url: 'mongodb://localhost:27018/jobs',
-    options: {
-      user: 'root',
-      pass: 'Ziyouyanfa#@!',
-      authSource: 'admin',
-      useNewUrlParser: true,
-      useCreateIndex: true,
-    },
   };
 
   config.logger = {

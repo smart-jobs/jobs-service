@@ -23,3 +23,18 @@ exports.CampusTalkStatus = {
   PENDING: '1', // 待审核
   REJECT: '2', // 审核失败
 };
+
+exports.TicketType = {
+  NORMAL: '0', // 正常门票
+  LIMITED: '1', // 受限门票
+};
+
+exports.UserOrigin = {
+  LOCAL: '0', // 本校
+  OTHER: '1', // 外校
+};
+
+exports.TicketStatus = {
+  NORMAL: '0', // 未用
+  USED: '1', // 已使用
+};

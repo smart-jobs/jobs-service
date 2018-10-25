@@ -2,7 +2,7 @@
 /**
  * 校园招聘信息
  */
-const meta = require('./jobinfo.json');
+const meta = require('./.jobinfo.js');
 const { Controller } = require('egg');
 const { CrudController } = require('naf-framework-mongoose/lib/controller');
 

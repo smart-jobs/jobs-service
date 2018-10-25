@@ -1,34 +1,26 @@
+/**
+ * 招聘信息
+ */
 'use strict';
 const Schema = require('mongoose').Schema;
-
-// 代码
-const codeSchema = new Schema({
-  code: { type: String, required: true, maxLength: 64 },
-  name: String,
-}, { _id: false });
+const { CodeNamePair } = require('naf-framework-mongoose/lib/model/schema');
+const metaPlugin = require('naf-framework-mongoose/lib/model/meta-plugin');
 
 // 校园招聘信息
 const SchemaDefine = {
-  tenant: { type: String, required: true, maxLength: 64 }, // 分站ID
   status: { type: String, default: '1', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-申请发布；2-审核失败
-  title: { type: String, require: true, maxLength: 128 }, // 标题
-  content: { type: String, require: true, maxLength: 10240 }, // 详情
+  title: { type: String, required: true, maxLength: 128 }, // 标题
+  content: { type: String, required: true, maxLength: 10240 }, // 详情
   corp: {
     id: String,
     name: String,
   },
-  city: codeSchema,
-  meta: {
-    state: {// 数据状态
-      type: Number,
-      default: 0, // 0-正常；1-标记删除
-    },
-    comment: String,
-  }
+  city: CodeNamePair,
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, timestamps: { createdAt: 'meta.createdAt', updatedAt: 'meta.updatedAt' } });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
 schema.index({ status: 1 });
 schema.index({ 'corp._id': 1 });
+schema.plugin(metaPlugin);
 
 module.exports = app => {
   const { mongoose } = app;

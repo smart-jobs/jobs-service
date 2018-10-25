@@ -1,15 +1,15 @@
-{
+module.exports = {
   "create": {
     "parameters": {
       "query": ["corp.id", "corp.name"]
     },
-    "requestBody": ["title", "content", "city"]
+    "requestBody": ["subject", "content", "city", "address", "school", "time", "contact", "email", "jobs"]
   },
   "update": {
     "parameters": {
       "query": ["_id", "corp.id"]
     },
-    "requestBody": ["title", "content", "city"]
+    "requestBody": ["subject", "content", "city", "address", "school", "time", "contact", "email", "jobs"]
   },
   "list": {
     "parameters": {
@@ -58,7 +58,7 @@
       "desc": true,
       "count": true,
       "projection": {
-        "title": 1,
+        "subject": 1,
         "corp.name": 1,
         "meta.createdAt": 1
       }

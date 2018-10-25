@@ -19,11 +19,12 @@ Accept: application/json
 
 
 ###
-# 企业预约展位
-#POST http://localhost:7001/api/jobfair/corp/apply?corp.id=5a9e2f4bb357a826385194ca&corp.name=福瑞科技&_id=5aa8e26d33eb8f27d0e22f99 HTTP/1.1
-POST http://oa.chinahuian.cn/jobs/jobfair/corp/apply?corp.id=5a9e2ed7a44cd66c81cfcf61&corp.name=福瑞科技&_id=5aaa24e61ab25764103600a2 HTTP/1.1
+# 企业申请展位
+POST http://localhost:8201/api/jobfair/corp/apply?corp.id=5a9e2f4bb357a826385194ca&corp.name=福瑞科技&id=5bd1042f3c82e822ecf996f0 HTTP/1.1
+#POST http://oa.chinahuian.cn/jobs/jobfair/corp/apply?corp.id=5a9e2ed7a44cd66c81cfcf61&corp.name=福瑞科技&_id=5aaa24e61ab25764103600a2 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+X-Tenant: 99991
 
 {
   "jobs": [{
@@ -42,11 +43,19 @@ Accept: application/json
 }
 
 ###
-# 修改招聘职位信息
-#POST http://localhost:7001/api/jobfair/corp/update?corp.id=5a9e2f4bb357a826385194ca&_id=5aa8e26d33eb8f27d0e22f99 HTTP/1.1
-POST http://oa.chinahuian.cn/jobs/jobfair/corp/update?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aaa24e61ab25764103600a2 HTTP/1.1
+# 查询企业参加的招聘会列表
+GET http://localhost:8201/api/jobfair/corp/mylist?corp.id=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
+#GET http://oa.chinahuian.cn/jobs/jobfair/corp/mylist?corp.id=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+Accept: application/json
+X-Tenant: 99991
+
+###
+# 批量修改招聘职位信息
+POST http://localhost:8201/api/jobfair/corp/update?corp.id=5a9e2f4bb357a826385194ca&_id=5bd104ae3c82e822ecf996f1 HTTP/1.1
+#POST http://oa.chinahuian.cn/jobs/jobfair/corp/update?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aaa24e61ab25764103600a2 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+X-Tenant: 99991
 
 {
   "jobs": [{
@@ -62,12 +71,66 @@ Accept: application/json
 
 ###
 # 获取招聘职位信息
-#GET http://localhost:7001/api/jobfair/corp/fetch?corp.id=5a9e2f4bb357a826385194ca&_id=5aa8e26d33eb8f27d0e22f99 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobfair/corp/fetch?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aaa24e61ab25764103600a2 HTTP/1.1
+GET http://localhost:8201/api/jobfair/corp/fetch?corp.id=5a9e2f4bb357a826385194ca&_id=5bd104ae3c82e822ecf996f1 HTTP/1.1
+#GET http://oa.chinahuian.cn/jobs/jobfair/corp/fetch?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aaa24e61ab25764103600a2 HTTP/1.1
+Accept: application/json
+X-Tenant: 99992
+
+###
+# 添加招聘职位信息
+POST http://localhost:8201/api/jobfair/corp/job/add?corp.id=5a9e2f4bb357a826385194ca&_id=5bd104ae3c82e822ecf996f1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+X-Tenant: 99991
+
+{
+  "name": "NodeJS程序员",
+  "count": 3,
+  "requirement": "计算机软件,软件工程,信息技术"
+}
+
+###
+# 修改招聘职位信息
+POST http://localhost:8201/api/jobfair/corp/job/update?corp.id=5a9e2f4bb357a826385194ca&_id=5bd11ee0eab958f59cbaff8a HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+X-Tenant: 99991
+
+{
+  "name": "NodeJS程序员",
+  "count": 6,
+  "requirement": "计算机软件,软件工程,信息技术"
+}
+
+###
+# 删除招聘职位信息
+GET http://localhost:8201/api/jobfair/corp/job/delete?corp.id=5a9e2f4bb357a826385194ca&_id=5bd11ee0eab958f59cbaff8a HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+X-Tenant: 99991
+
+###
+# 领取招聘会门票
+POST http://localhost:8201/api/jobfair/ticket/apply?id=5bd1042f3c82e822ecf996f0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "user": {
+    "id": "5a9e2f4bb357a826385194cc",
+    "name": "李四",
+    "yxdm": "99991"
+  }
+}
+
+###
+# 我的招聘会门票列表
+GET http://localhost:8201/api/jobfair/ticket/mylist?user.id=5a9e2f4bb357a826385194cc HTTP/1.1
+Content-Type: application/json
 Accept: application/json
 
 ###
-# 查询企业参加的招聘会列表
-#GET http://localhost:7001/api/jobfair/corp/mylist?corp.id=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobfair/corp/mylist?corp.id=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+# 扫码验证招聘会门票
+POST http://localhost:8201/api/jobfair/ticket/verify?_id=5bd1222506dd80ba200e9edd&device=123 HTTP/1.1
+Content-Type: application/json
 Accept: application/json

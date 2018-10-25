@@ -6,6 +6,7 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
+  router.get('/test', controller.home.test);
 
   // 数据接口
   // 校园招聘信息
@@ -17,15 +18,23 @@ module.exports = app => {
   router.post('/api/jobinfo/create', controller.api.jobinfo.create);
   router.post('/api/jobinfo/update', controller.api.jobinfo.update);
   // 校园招聘会
+  router.get('/api/jobfair/query_g', controller.api.jobfair.query_g);// 【全站】查询已发布的信息数据列表
+  router.get('/api/jobfair/simple_g', controller.api.jobfair.simple_g);// 【全站】查询已发布的信息概要列表
+  router.get('/api/jobfair/today', controller.api.jobfair.today);// 【全站】获取当前招聘会列表
   router.get('/api/jobfair/query', controller.api.jobfair.query);// 查询已发布的信息数据列表
   router.get('/api/jobfair/simple', controller.api.jobfair.simple);// 查询已发布的信息概要列表
-  router.get('/api/jobfair/fetch', controller.api.jobfair.fetch);// 获取信息详情
+  router.get('/api/jobfair/fetch', controller.api.jobfair.fetch);// 【全站】获取信息详情
+  router.get('/api/jobfair/corp/list', controller.api.jobfair.corp_list);// 【全站】招聘会参展信息
   router.post('/api/jobfair/corp/apply', controller.api.jobfair.corp_apply);// 企业预定展位
   router.post('/api/jobfair/corp/update', controller.api.jobfair.corp_update);// 企业预定展位信息修改
   router.get('/api/jobfair/corp/fetch', controller.api.jobfair.corp_fetch);// 获得指定招聘会中指定企业预定展位信息
   router.get('/api/jobfair/corp/mylist', controller.api.jobfair.corp_mylist);// 企业参与的招聘会信息列表
-  // router.post('/api/jobfair/ticket/apply', controller.api.jobfair.ticket_apply);// 学生报名参加
-  // router.post('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 学生申请的招聘会门票列表
+  router.post('/api/jobfair/corp/job/add', controller.api.jobfair.corp_job_add);// 企业添加招聘职位信息
+  router.post('/api/jobfair/corp/job/update', controller.api.jobfair.corp_job_update);// 企业修改招聘职位信息
+  router.get('/api/jobfair/corp/job/delete', controller.api.jobfair.corp_job_delete);// 企业删除招聘职位信息
+  router.post('/api/jobfair/ticket/apply', controller.api.jobfair.ticket_apply);// 【全站】学生领取招聘会门票
+  router.get('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 【全站】学生申请的招聘会门票列表
+  router.post('/api/jobfair/ticket/verify', controller.api.jobfair.ticket_verify);// 【全站】招聘会门票扫码验证
   // 校园宣讲会
   router.get('/api/campus/query', controller.api.campus.query); // 查询所有已发布的信息
   router.get('/api/campus/simple', controller.api.campus.simple); // 查询所有已发布的信息，简单信息

@@ -2,7 +2,7 @@
 /**
  * 校园招聘会
  */
-const meta = require('./jobfair.json');
+const meta = require('./.jobfair.js');
 const { Controller } = require('egg');
 const { CrudController } = require('naf-framework-mongoose/lib/controller');
 
