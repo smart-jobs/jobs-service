@@ -27,5 +27,15 @@ module.exports = appInfo => {
     },
   };
 
+  // axios service config
+  config.axios = {
+    corp: { // 企业信息查询服务
+      baseUrl: 'http://localhost:8102/api',
+    },
+    user: { // 学生信息查询服务
+      baseUrl: 'http://localhost:8101/api',
+    },
+  };
+
   return config;
 };

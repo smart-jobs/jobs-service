@@ -28,6 +28,13 @@ class JobinfoService extends CrudService {
     // 检查数据
     assert(id, 'id不能为空');
 
+    // TODO: 查询企业信息
+    const corp = await this.service.axios.corp.fetch({ _id: corpid });
+    if (!corp) {
+      throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
+    }
+    corpname = corp.name;
+
     // TODO:检查数据是否存在
     const doc = await this.model.findById(ObjectId(id)).exec();
     if (isNullOrUndefined(doc)) {
