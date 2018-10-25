@@ -64,7 +64,51 @@ module.exports = {
       }
     }
   },
+  // 【全站】查询信息详情
   "fetch": {
-    "query": ["_id"]
-  }
+    "parameters": {
+      "query": ["_id"],
+    },
+    "service": "api.jobinfoGlobal.fetch",
+  },
+  // 【全站】查询信息列表
+  "query_g": {
+    "parameters": {
+      "query": ["corp.id"],
+      "options": {
+        "status": "0"
+      }
+    },
+    "service": "api.jobinfoGlobal.query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "count": true,
+      "projection": {
+        "content": 0
+      }
+    }
+  },
+  // 【全站】查询信息简表
+  "simple_g": {
+    "parameters": {
+      "query": ["corp.id"],
+      "options": {
+        "status": "0"
+      }
+    },
+    "service": "api.jobinfoGlobal.query",
+    "options": {
+      "query": ["skip", "limit"],
+      "sort": ["meta.createAt"],
+      "desc": true,
+      "count": true,
+      "projection": {
+        "title": 1,
+        "corp.name": 1,
+        "meta.createdAt": 1
+      }
+    }
+  },
 }

@@ -11,6 +11,8 @@ module.exports = app => {
   // 数据接口
   // 校园招聘信息
   // console.log(controller);
+  router.get('/api/jobinfo/query_g', controller.api.jobinfo.query_g); // 【全站】查询所有已发布的信息
+  router.get('/api/jobinfo/simple_g', controller.api.jobinfo.simple_g); // 【全站】查询所有已发布的信息，简单信息
   router.get('/api/jobinfo/query', controller.api.jobinfo.query); // 查询所有已发布的信息
   router.get('/api/jobinfo/simple', controller.api.jobinfo.simple); // 查询所有已发布的信息，简单信息
   router.get('/api/jobinfo/list', controller.api.jobinfo.list); // 查询当前用户提交的信息
@@ -36,6 +38,8 @@ module.exports = app => {
   router.get('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 【全站】学生申请的招聘会门票列表
   router.post('/api/jobfair/ticket/verify', controller.api.jobfair.ticket_verify);// 【全站】招聘会门票扫码验证
   // 校园宣讲会
+  router.get('/api/campus/query_g', controller.api.campus.query_g); // 【全站】查询所有已发布的信息
+  router.get('/api/campus/simple_g', controller.api.campus.simple_g); // 【全站】查询所有已发布的信息，简单信息
   router.get('/api/campus/query', controller.api.campus.query); // 查询所有已发布的信息
   router.get('/api/campus/simple', controller.api.campus.simple); // 查询所有已发布的信息，简单信息
   router.get('/api/campus/list', controller.api.campus.list); // 查询当前用户提交的信息
