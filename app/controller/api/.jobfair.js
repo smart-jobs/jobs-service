@@ -131,9 +131,8 @@ module.exports = {
   // 领取门票, 【全站】
   "ticket_apply": {
     "parameters": {
-      "query": ["id"] // 招聘会ID
+      "query": ["id", "user.id"] // 招聘会ID, 学生ID
     },
-    "requestBody": ["user"], // 学生信息：user: {id, name, yxdm} 学生ID, 学生姓名，学生院校代码
     "service": "api.jobfairGlobal.ticket_apply",
   },
   // 验证门票, 【全站】

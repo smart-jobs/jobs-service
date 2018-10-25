@@ -21,10 +21,9 @@ class JobinfoService extends CrudService {
   //   return rs;
   // }
 
-  async corp_apply({ id, 'corp.id': corpid, 'corp.name': corpname }, { jobs }) {
+  async corp_apply({ id, 'corp.id': corpid }, { jobs }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     assert(corpid, '企业ID不能为空');
-    assert(corpname, '企业名称不能为空');
     // 检查数据
     assert(id, 'id不能为空');
 
@@ -33,7 +32,7 @@ class JobinfoService extends CrudService {
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    corpname = corp.name;
+    const corpname = corp.name;
 
     // TODO:检查数据是否存在
     const doc = await this.model.findById(ObjectId(id)).exec();

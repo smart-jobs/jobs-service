@@ -53,13 +53,17 @@ class JobinfoGlobalService extends CrudService {
 
 
   // 申请招聘会门票
-  async ticket_apply({ id }, { user }) {
+  async ticket_apply({ id, 'user.id': userid }) {
     // TODO: user应该从token中获取，此处暂时由参数传入
     // 检查数据
     assert(id, 'id(招聘会ID)不能为空');
-    assert(_.isObject(user), 'user必须是一个对象');
-    assert(user.id, 'user.id不能为空');
-    assert(user.name, 'user.name不能为空');
+    assert(userid, 'user.id不能为空');
+
+    // TODO: 查询用户信息
+    const user = await this.service.axios.user.fetch({ _id: userid });
+    if (!user) {
+      throw new BusinessError(ErrorCode.USER_NOT_EXIST, '用户信息不存在');
+    }
 
     // TODO:检查数据是否存在
     const doc = await this.model.findById(ObjectId(id)).exec();
@@ -73,7 +77,7 @@ class JobinfoGlobalService extends CrudService {
       throw new BusinessError(ErrorCode.DATA_INVALID, '招聘会已结束');
     }
 
-    const { id: userid, name, yxdm } = user;
+    const { name, yxdm } = user;
 
     // TODO: 检查是否已申请
     let apply = await this.mTicket.findOne({ id, 'user.id': userid }).exec();
