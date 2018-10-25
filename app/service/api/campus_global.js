@@ -5,7 +5,7 @@ const { CrudService } = require('naf-framework-mongoose/lib/service');
 class CampusTalkGlobalService extends CrudService {
   constructor(ctx) {
     super(ctx);
-    this.model = this.app.model.mInfo;
+    this.model = this.app.model.Campus;
   }
 }
 

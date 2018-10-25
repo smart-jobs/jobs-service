@@ -10,7 +10,7 @@ const { CampusTalkStatus } = require('../../util/constants');
 class CampusTalkService extends CrudService {
   constructor(ctx) {
     super(ctx);
-    this.model = this.ctx.model.mInfo;
+    this.model = this.ctx.model.Campus;
   }
 
   async create({ 'corp.id': corpid, 'corp.name': corpname }, { subject, content, city, address, school, time, contact, email, jobs }) {
