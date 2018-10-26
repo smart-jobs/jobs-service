@@ -3,7 +3,7 @@ module.exports = {
     "parameters": {
       "query": ["corp.id", "corp.name"]
     },
-    "requestBody": ["subject", "content", "city", "address", "school", "time", "contact", "email", "jobs"]
+    "requestBody": ["subject", "content", "city", "address", "school", "time", "contact", "email", "jobs", "date"]
   },
   "update": {
     "parameters": {

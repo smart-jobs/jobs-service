@@ -13,7 +13,7 @@ class CampusTalkService extends CrudService {
     this.model = this.ctx.model.Campus;
   }
 
-  async create({ 'corp.id': corp_id }, { subject, content, city, address, school, time, contact, email, jobs }) {
+  async create({ 'corp.id': corp_id }, { subject, content, city, address, school, date, time, contact, email, jobs }) {
     // TODO: coreid和corpname应该从token中获取，此处暂时由参数传入
     assert(corp_id, '企业ID不能为空');
     // 检查数据
@@ -24,6 +24,7 @@ class CampusTalkService extends CrudService {
     assert(time, 'time不能为空');
     assert(contact, 'contact不能为空');
     assert(email, 'email不能为空');
+    assert(date, 'date不能为空');
     assert(isArray(jobs), 'jobs必须是一个对象数组');
 
     // TODO: 查询企业信息
@@ -35,7 +36,7 @@ class CampusTalkService extends CrudService {
 
     // TODO:保存数据
     const data = { subject, content, corp, status: CampusTalkStatus.PENDING,
-      city, address, school, time, contact, email, jobs };
+      city, address, school, time, contact, email, jobs, date, unit: this.tenant };
 
     const res = await this.model.create(data);
     return res;
