@@ -2,7 +2,7 @@
 ```
 'use strict';
 
-const ObjectID = require('mongodb').ObjectID;
+const { ObjectId } = require('mongoose').Types;
 const assert = require('assert');
 const util = require('core-util-is');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
@@ -20,7 +20,7 @@ class CategoryService extends CrudService {
     assert(id);
 
     // TODO:检查数据是否存在
-    const entity = await this._findOne({ _id: ObjectID(id) });
+    const entity = await this._findOne({ _id: ObjectId(id) });
     if (util.isNullOrUndefined(entity)) throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
 
     // TODO: 检查是否包含字典项数据
@@ -29,7 +29,7 @@ class CategoryService extends CrudService {
       throw new BusinessError(ErrorCode.SERVICE_FAULT, '存在字典项数据，不能删除');
     }
 
-    await this._remove({ _id: ObjectID(id) });
+    await this._remove({ _id: ObjectId(id) });
     return 'deleted';
   }
 

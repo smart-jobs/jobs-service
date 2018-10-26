@@ -111,17 +111,9 @@ X-Tenant: 99991
 
 ###
 # 领取招聘会门票
-POST http://localhost:8201/api/jobfair/ticket/apply?id=5bd1042f3c82e822ecf996f0 HTTP/1.1
+POST http://localhost:8201/api/jobfair/ticket/apply?fair_id=5bd1042f3c82e822ecf996f0&user.id=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-
-{
-  "user": {
-    "id": "5a9e2f4bb357a826385194cc",
-    "name": "李四",
-    "yxdm": "99991"
-  }
-}
 
 ###
 # 我的招聘会门票列表

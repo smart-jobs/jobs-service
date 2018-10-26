@@ -28,8 +28,8 @@ const SchemaDefine = {
   status: { type: String, required: true, maxLength: 64, default: '0' },
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
-schema.index({ id: 1 });
-schema.index({ id: 1, status: 1 });
+schema.index({ fair_id: 1 });
+schema.index({ fair_id: 1, status: 1 });
 schema.index({ 'corp.id': 1 });
 schema.plugin(metaPlugin);
 
