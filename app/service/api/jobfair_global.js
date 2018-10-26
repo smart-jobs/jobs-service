@@ -158,6 +158,26 @@ class JobinfoGlobalService extends CrudService {
     return doc;
   }
 
+  // 扫码验证设备登录
+  async login({ _id, password, device }) {
+    this.ctx.logger.debug('[JobinfoGlobalService] request login: ', device);
+    // TODO: user应该从token中获取，此处暂时由参数传入
+    // 检查数据
+    assert(_id, '_id(招聘会门票ID)不能为空');
+
+    // TODO: 检查数据是否存在
+    const doc = await this.model.findById(ObjectId(_id), '+secret').exec();
+    if (isNullOrUndefined(doc)) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
+    }
+
+    // TODO: 校验密码
+    if (doc.secret !== password) {
+      throw new BusinessError(ErrorCode.BAD_PASSWORD, '密码校验失败');
+    }
+
+    return _.omit(doc.toObject(), 'secret');
+  }
 }
 
 module.exports = JobinfoGlobalService;

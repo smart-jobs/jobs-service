@@ -134,3 +134,14 @@ Accept: application/json
 POST http://localhost:8201/api/jobfair/ticket/verify?_id=5bd1222506dd80ba200e9edd&device=123 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
+
+###
+# 扫码验证登录
+POST http://localhost:8201/api/jobfair/ticket/login?device=123 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "_id": "5bd1042f3c82e822ecf996f0",
+  "password": "123456"
+}

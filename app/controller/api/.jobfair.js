@@ -152,4 +152,12 @@ module.exports = {
     },
     "service": "api.jobfairGlobal.ticket_mylist",
   },
+  // 【全站】扫码设备登录
+  "login": {
+    "parameters": {
+      "query": ["device"],
+      "requestBody": ["_id", "password"]
+    },
+    "service": "api.jobfairGlobal.login",
+  },
 }

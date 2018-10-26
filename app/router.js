@@ -37,6 +37,7 @@ module.exports = app => {
   router.post('/api/jobfair/ticket/apply', controller.api.jobfair.ticket_apply);// 【全站】学生领取招聘会门票
   router.get('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 【全站】学生申请的招聘会门票列表
   router.post('/api/jobfair/ticket/verify', controller.api.jobfair.ticket_verify);// 【全站】招聘会门票扫码验证
+  router.post('/api/jobfair/ticket/login', controller.api.jobfair.login);// 【全站】招聘会门票扫码登录
   // 校园宣讲会
   router.get('/api/campus/query_g', controller.api.campus.query_g); // 【全站】查询所有已发布的信息
   router.get('/api/campus/simple_g', controller.api.campus.simple_g); // 【全站】查询所有已发布的信息，简单信息
