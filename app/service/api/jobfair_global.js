@@ -20,30 +20,30 @@ class JobinfoGlobalService extends CrudService {
   }
 
   // 查询招聘会包含的参展企业列表（审核通过的企业）
-  async corp_list({ id }, { skip = 0, limit = 100 }) {
+  async corp_list({ fair_id }, { skip = 0, limit = 100 }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(id, '招聘会ID不能为空');
+    assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    const rs = await this.mCorp.find({ id, status: JobfairCorpStatus.NORMAL },
+    const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL },
       { corp: 1, jobs: 1 },
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 
     // TODO: 转换输出数据格式
     return rs.map(p => ({
-      corpid: p.corp.id,
-      corpname: p.corp.name,
+      corp_id: p.corp.id,
+      corp_name: p.corp.name,
       jobs: p.jobs,
     }));
   }
 
-  async corp_fetch({ _id, id, 'corp.id': corpid }) {
+  async corp_fetch({ _id, fair_id, 'corp.id': corp_id }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     let filter = { _id: ObjectId(_id) };
     if (!_id) {
-      assert(corpid, '企业ID不能为空');
-      assert(id, '招聘会ID不能为空');
-      filter = { id, 'corp.id': corpid };
+      assert(corp_id, '企业ID不能为空');
+      assert(fair_id, '招聘会ID不能为空');
+      filter = { fair_id, 'corp.id': corp_id };
     }
 
     // TODO:检查数据是否存在
@@ -53,20 +53,20 @@ class JobinfoGlobalService extends CrudService {
 
 
   // 申请招聘会门票
-  async ticket_apply({ id, 'user.id': userid }) {
+  async ticket_apply({ fair_id, 'user.id': user_id }) {
     // TODO: user应该从token中获取，此处暂时由参数传入
     // 检查数据
-    assert(id, 'id(招聘会ID)不能为空');
-    assert(userid, 'user.id不能为空');
+    assert(fair_id, '招聘会ID不能为空');
+    assert(user_id, '用户ID不能为空');
 
     // TODO: 查询用户信息
-    const user = await this.service.axios.user.fetch({ _id: userid });
+    const user = await this.service.axios.user.fetch({ _id: user_id });
     if (!user) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '用户信息不存在');
     }
 
     // TODO:检查数据是否存在
-    const doc = await this.model.findById(ObjectId(id)).exec();
+    const doc = await this.model.findById(ObjectId(fair_id)).exec();
     if (isNullOrUndefined(doc)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
     }
@@ -80,7 +80,7 @@ class JobinfoGlobalService extends CrudService {
     const { name, yxdm } = user;
 
     // TODO: 检查是否已申请
-    let apply = await this.mTicket.findOne({ id, 'user.id': userid }).exec();
+    let apply = await this.mTicket.findOne({ fair_id, 'user.id': user_id }).exec();
     if (apply) {
       throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复申请');
     }
@@ -91,7 +91,7 @@ class JobinfoGlobalService extends CrudService {
       // TODO: 检查门票数量限制
       const { count: limit = 0 } = doc.limit || {};
       if (limit > 0) {
-        const count = await this.mTicket.countDocuments({ id, origin: UserOrigin.LOCAL, type: TicketType.NORMAL }).exec();
+        const count = await this.mTicket.countDocuments({ fair_id, origin: UserOrigin.LOCAL, type: TicketType.NORMAL }).exec();
         if (count >= limit) {
           type = TicketType.LIMITED;
         }
@@ -99,23 +99,23 @@ class JobinfoGlobalService extends CrudService {
     }
 
     // TODO:保存数据
-    apply = await this.mTicket.create({ id, origin, type, user: { id: userid, name, yxdm }, verify: { status: TicketStatus.NORMAL } });
+    apply = await this.mTicket.create({ fair_id, origin, type, user: { id: user_id, name, yxdm }, verify: { status: TicketStatus.NORMAL } });
 
     return apply;
   }
 
   // 查询用户所申请的所有门票列表
-  async ticket_mylist({ 'user.id': userid }, { skip = 0, limit = 100 }) {
-    // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(userid, 'user.id不能为空');
+  async ticket_mylist({ 'user.id': user_id }, { skip = 0, limit = 100 }) {
+    // TODO: user_id应该从token中获取，此处暂时由参数传入
+    assert(user_id, '用户ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    const rs = await this.mTicket.find({ 'user.id': userid },
+    const rs = await this.mTicket.find({ 'user.id': user_id },
       null,
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 
     // TODO: 查询招聘会信息
-    const ids = rs.map(p => ObjectId(p.id));
+    const ids = rs.map(p => ObjectId(p.fair_id));
     let jobfairs = await this.model.find({ _id: { $in: ids } }, { subject: 1, unit: 1, date: 1 }).exec();
     jobfairs = jobfairs.reduce((p, c) => {
       p[c._id.toString()] = _.omit(c.toObject(), [ '_id' ]);
@@ -125,18 +125,18 @@ class JobinfoGlobalService extends CrudService {
     // TODO: 转换输出数据格式，增加招聘会信息
     return rs.map(p => ({
       ...p.toObject(),
-      ...jobfairs[p.id],
+      ...jobfairs[p.fair_id],
     }));
   }
 
   // 招聘会门票扫码验证
-  async ticket_verify({ _id, device }) {
+  async ticket_verify({ ticket_id, device }) {
     // TODO: user应该从token中获取，此处暂时由参数传入
     // 检查数据
-    assert(_id, '_id(招聘会门票ID)不能为空');
+    assert(ticket_id, '招聘会门票ID不能为空');
 
     // TODO:检查数据是否存在
-    const doc = await this.mTicket.findById(ObjectId(_id)).exec();
+    const doc = await this.mTicket.findById(ObjectId(ticket_id)).exec();
     if (isNullOrUndefined(doc)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会门票信息不存在');
     }
@@ -159,14 +159,14 @@ class JobinfoGlobalService extends CrudService {
   }
 
   // 扫码验证设备登录
-  async login({ _id, password, device }) {
+  async login({ fair_id, password, device }) {
     this.ctx.logger.debug('[JobinfoGlobalService] request login: ', device);
     // TODO: user应该从token中获取，此处暂时由参数传入
     // 检查数据
-    assert(_id, '_id(招聘会门票ID)不能为空');
+    assert(fair_id, '招聘会门票ID不能为空');
 
     // TODO: 检查数据是否存在
-    const doc = await this.model.findById(ObjectId(_id), '+secret').exec();
+    const doc = await this.model.findById(ObjectId(fair_id), '+secret').exec();
     if (isNullOrUndefined(doc)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
     }

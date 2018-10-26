@@ -7,7 +7,7 @@ module.exports = {
   },
   "update": {
     "parameters": {
-      "query": ["_id", "corp.id"]
+      "query": {"_id":"_id", "id":"_id", "corp.id": "corp.id"}
     },
     "requestBody": ["title", "content", "city"]
   },
@@ -67,7 +67,7 @@ module.exports = {
   // 【全站】查询信息详情
   "fetch": {
     "parameters": {
-      "query": ["_id"],
+      "query": {"_id":"_id", "id":"_id"}
     },
     "service": "api.jobinfoGlobal.fetch",
   },

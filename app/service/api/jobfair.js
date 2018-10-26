@@ -21,21 +21,21 @@ class JobinfoService extends CrudService {
   //   return rs;
   // }
 
-  async corp_apply({ id, 'corp.id': corpid }, { jobs }) {
+  async corp_apply({ fair_id, 'corp.id': corp_id }, { jobs }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(corpid, '企业ID不能为空');
+    assert(corp_id, '企业ID不能为空');
     // 检查数据
-    assert(id, 'id不能为空');
+    assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询企业信息
-    const corp = await this.service.axios.corp.fetch({ _id: corpid });
+    const corp = await this.service.axios.corp.fetch({ _id: corp_id });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    const corpname = corp.name;
+    const corp_name = corp.name;
 
     // TODO:检查数据是否存在
-    const doc = await this.model.findById(ObjectId(id)).exec();
+    const doc = await this.model.findById(ObjectId(fair_id)).exec();
     if (isNullOrUndefined(doc)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
     }
@@ -45,21 +45,21 @@ class JobinfoService extends CrudService {
     }
 
     // TODO: 检查是否已申请
-    let apply = await this.mCorp.findOne({ id, 'corp.id': corpid }).exec();
+    let apply = await this.mCorp.findOne({ fair_id, 'corp.id': corp_id }).exec();
     if (apply) {
       throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复申请');
     }
 
     // TODO:保存数据
-    apply = await this.mCorp.create({ id, corp: { id: corpid, name: corpname }, jobs, status: JobfairCorpStatus.PENDING });
+    apply = await this.mCorp.create({ fair_id, corp: { id: corp_id, name: corp_name }, jobs, status: JobfairCorpStatus.PENDING });
 
     return apply;
   }
 
-  async corp_update({ _id, id, 'corp.id': corpid }, { jobs }) {
+  async corp_update({ _id, fair_id, 'corp.id': corp_id }, { jobs }) {
 
     // TODO:检查数据是否存在
-    const doc = await this.corp_fetch({ _id, id, 'corp.id': corpid });
+    const doc = await this.corp_fetch({ _id, fair_id, 'corp.id': corp_id });
     if (isNullOrUndefined(doc)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '参会申请信息不存在');
     }
@@ -75,13 +75,13 @@ class JobinfoService extends CrudService {
     return doc;
   }
 
-  async corp_fetch({ _id, id, 'corp.id': corpid }) {
+  async corp_fetch({ _id, fair_id, 'corp.id': corp_id }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(corpid, '企业ID不能为空');
-    let filter = { _id: ObjectId(_id), 'corp.id': corpid };
+    assert(corp_id, '企业ID不能为空');
+    let filter = { _id: ObjectId(_id), 'corp.id': corp_id };
     if (!_id) {
-      assert(id, '招聘会ID不能为空');
-      filter = { id, 'corp.id': corpid };
+      assert(fair_id, '招聘会ID不能为空');
+      filter = { fair_id, 'corp.id': corp_id };
     }
 
     // TODO:检查数据是否存在
@@ -90,15 +90,15 @@ class JobinfoService extends CrudService {
   }
 
   // 查询企业参加的招聘会列表
-  async corp_mylist({ 'corp.id': corpid }, { skip = 0, limit = 100 }) {
+  async corp_mylist({ 'corp.id': corp_id }, { skip = 0, limit = 100 }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(corpid, '企业ID不能为空');
+    assert(corp_id, '企业ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    let rs = await this.mCorp.find({ 'corp.id': corpid },
-      { id: 1 },
+    let rs = await this.mCorp.find({ 'corp.id': corp_id },
+      { fair_id: 1 },
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
-    const ids = rs.map(p => ObjectId(p.id));
+    const ids = rs.map(p => ObjectId(p.fair_id));
 
     // TODO: 查询招聘会信息
     rs = await this.model.find({ _id: { $in: ids } }, null, { sort: { 'meta.createdAt': -1 } }).exec();
@@ -107,34 +107,35 @@ class JobinfoService extends CrudService {
     return rs.map(p => ({
       _id: p._id,
       subject: p.subject,
-      createAt: p.meta.createdAt,
-      school: p.school,
+      unit: p.unit,
+      date: p.date,
+      time: p.time,
     }));
   }
 
   // 查询招聘会包含的参展企业列表（审核通过的企业）
-  async corp_list({ id }, { skip = 0, limit = 100 }) {
+  async corp_list({ fair_id }, { skip = 0, limit = 100 }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(id, '招聘会ID不能为空');
+    assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    const rs = await this.mCorp.find({ id, status: JobfairCorpStatus.NORMAL },
+    const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL },
       { corp: 1, jobs: 1 },
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 
     // TODO: 转换输出数据格式
     return rs.map(p => ({
-      corpid: p.corp.id,
-      corpname: p.corp.name,
+      corp_id: p.corp.id,
+      corp_name: p.corp.name,
       jobs: p.jobs,
     }));
   }
 
   // 招聘会企业添加职位信息
-  async corp_job_add({ _id, id, 'corp.id': corpid }, { name, count = 0, requirement }) {
+  async corp_job_add({ _id, fair_id, 'corp.id': corp_id }, { name, count = 0, requirement }) {
 
     // TODO:检查数据是否存在
-    const doc = await this.corp_fetch({ _id, id, 'corp.id': corpid });
+    const doc = await this.corp_fetch({ _id, fair_id, 'corp.id': corp_id });
     if (!doc) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会企业信息记录不存在');
     }
@@ -161,12 +162,12 @@ class JobinfoService extends CrudService {
   }
 
   // 招聘会企业添加职位信息
-  async corp_job_update({ _id, 'corp.id': corpid }, { name, count = 0, requirement }) {
-    assert(_id, '_id不能为空');
-    assert(corpid, 'corp.id不能为空');
+  async corp_job_update({ job_id, 'corp.id': corp_id }, { name, count = 0, requirement }) {
+    assert(job_id, '职位ID不能为空');
+    assert(corp_id, '企业ID不能为空');
 
     // TODO:检查数据是否存在
-    const doc = await this.mCorp.findOne({ jobs: { $elemMatch: { _id: ObjectId(_id) } }, 'corp.id': corpid }).exec();
+    const doc = await this.mCorp.findOne({ jobs: { $elemMatch: { _id: ObjectId(job_id) } }, 'corp.id': corp_id }).exec();
     if (!doc) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘职位信息记录不存在');
     }
@@ -177,7 +178,7 @@ class JobinfoService extends CrudService {
     }
 
     // TODO: 保存数据
-    const subdoc = doc.jobs.id(ObjectId(_id));
+    const subdoc = doc.jobs.id(ObjectId(job_id));
     Object.assign(subdoc, trimData({ name, count, requirement }));
     await doc.save();
 
@@ -185,12 +186,12 @@ class JobinfoService extends CrudService {
   }
 
   // 招聘会企业删除职位信息
-  async corp_job_delete({ _id, 'corp.id': corpid }) {
-    assert(_id, '_id不能为空');
-    assert(corpid, 'corp.id不能为空');
+  async corp_job_delete({ job_id, 'corp.id': corp_id }) {
+    assert(job_id, '职位ID不能为空');
+    assert(corp_id, '企业ID不能为空');
 
     // TODO:检查数据是否存在
-    const doc = await this.mCorp.findOne({ jobs: { $elemMatch: { _id: ObjectId(_id) } }, 'corp.id': corpid }).exec();
+    const doc = await this.mCorp.findOne({ jobs: { $elemMatch: { _id: ObjectId(job_id) } }, 'corp.id': corp_id }).exec();
     if (!doc) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘职位信息记录不存在');
     }
@@ -201,7 +202,7 @@ class JobinfoService extends CrudService {
     }
 
     // TODO: 保存数据
-    doc.jobs.id(ObjectId(_id)).remove();
+    doc.jobs.id(ObjectId(job_id)).remove();
     await doc.save();
 
     return doc;

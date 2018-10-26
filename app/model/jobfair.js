@@ -34,8 +34,6 @@ const SchemaDefine = {
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
 schema.index({ status: 1 });
-schema.index({ 'corps.name': 1 });
-schema.index({ 'corps.name': 1, 'corps.status': 1 });
 schema.plugin(metaPlugin);
 
 module.exports = app => {
