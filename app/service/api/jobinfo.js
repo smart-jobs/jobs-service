@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('assert');
+const { ObjectId } = require('mongoose').Types;
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { isNullOrUndefined } = require('naf-core').Util;
 const { CrudService } = require('naf-framework-mongoose/lib/service');
@@ -21,7 +22,7 @@ class JobinfoService extends CrudService {
     assert(city, 'city不能为空');
 
     // TODO: 查询企业信息
-    let corp = await this.service.axios.corp.fetch({ _id: corp_id });
+    let corp = await this.service.axios.corp.fetch({ id: corp_id });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
@@ -32,14 +33,14 @@ class JobinfoService extends CrudService {
     return res;
   }
 
-  async update({ _id, 'corp.id': corp_id }, { title, content, city }) {
+  async update({ id, 'corp.id': corp_id }, { title, content, city }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     assert(corp_id, '企业ID不能为空');
     // 检查数据
-    assert(_id, '_id不能为空');
+    assert(id, 'id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.model.findOne({ _id, 'corp.id': corp_id }).exec();
+    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corp_id }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }
@@ -49,7 +50,7 @@ class JobinfoService extends CrudService {
     }
 
     // TODO:保存数据
-    const res = await this.model.findByIdAndUpdate(_id, { title, content, city }).exec();
+    const res = await this.model.findByIdAndUpdate(id, { title, content, city }, { new: true }).exec();
     return res;
   }
 

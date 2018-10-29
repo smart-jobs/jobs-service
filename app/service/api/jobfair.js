@@ -28,7 +28,7 @@ class JobinfoService extends CrudService {
     assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询企业信息
-    const corp = await this.service.axios.corp.fetch({ _id: corp_id });
+    const corp = await this.service.axios.corp.fetch({ id: corp_id });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
@@ -56,10 +56,10 @@ class JobinfoService extends CrudService {
     return apply;
   }
 
-  async corp_update({ _id, fair_id, 'corp.id': corp_id }, { jobs }) {
+  async corp_update({ id, fair_id, 'corp.id': corp_id }, { jobs }) {
 
     // TODO:检查数据是否存在
-    const doc = await this.corp_fetch({ _id, fair_id, 'corp.id': corp_id });
+    const doc = await this.corp_fetch({ id, fair_id, 'corp.id': corp_id });
     if (isNullOrUndefined(doc)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '参会申请信息不存在');
     }
@@ -75,11 +75,11 @@ class JobinfoService extends CrudService {
     return doc;
   }
 
-  async corp_fetch({ _id, fair_id, 'corp.id': corp_id }) {
+  async corp_fetch({ id, fair_id, 'corp.id': corp_id }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     assert(corp_id, '企业ID不能为空');
-    let filter = { _id: ObjectId(_id), 'corp.id': corp_id };
-    if (!_id) {
+    let filter = { _id: ObjectId(id), 'corp.id': corp_id };
+    if (!id) {
       assert(fair_id, '招聘会ID不能为空');
       filter = { fair_id, 'corp.id': corp_id };
     }
@@ -132,10 +132,10 @@ class JobinfoService extends CrudService {
   }
 
   // 招聘会企业添加职位信息
-  async corp_job_add({ _id, fair_id, 'corp.id': corp_id }, { name, count = 0, requirement }) {
+  async corp_job_add({ id, fair_id, 'corp.id': corp_id }, { name, count = 0, requirement }) {
 
     // TODO:检查数据是否存在
-    const doc = await this.corp_fetch({ _id, fair_id, 'corp.id': corp_id });
+    const doc = await this.corp_fetch({ id, fair_id, 'corp.id': corp_id });
     if (!doc) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会企业信息记录不存在');
     }

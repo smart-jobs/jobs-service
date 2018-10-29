@@ -37,18 +37,15 @@ class JobinfoGlobalService extends CrudService {
     }));
   }
 
-  async corp_fetch({ _id, fair_id, 'corp.id': corp_id }) {
+  async corp_fetch({ id, fair_id, 'corp.id': corp_id }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    let filter = { _id: ObjectId(_id) };
-    if (!_id) {
+    if (!id) {
       assert(corp_id, '企业ID不能为空');
       assert(fair_id, '招聘会ID不能为空');
-      filter = { fair_id, 'corp.id': corp_id };
+      return await this.mCorp.findOne({ fair_id, 'corp.id': corp_id }).exec();
     }
 
-    // TODO:检查数据是否存在
-    const doc = await this.mCorp.findOne(filter).exec();
-    return doc;
+    return await this.mCorp.findById(id);
   }
 
 
@@ -60,7 +57,7 @@ class JobinfoGlobalService extends CrudService {
     assert(user_id, '用户ID不能为空');
 
     // TODO: 查询用户信息
-    const user = await this.service.axios.user.fetch({ _id: user_id });
+    const user = await this.service.axios.user.fetch({ id: user_id });
     if (!user) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '用户信息不存在');
     }
@@ -118,7 +115,7 @@ class JobinfoGlobalService extends CrudService {
     const ids = rs.map(p => ObjectId(p.fair_id));
     let jobfairs = await this.model.find({ _id: { $in: ids } }, { subject: 1, unit: 1, date: 1 }).exec();
     jobfairs = jobfairs.reduce((p, c) => {
-      p[c._id.toString()] = _.omit(c.toObject(), [ '_id' ]);
+      p[c.id] = _.omit(c.toObject(), [ '_id' ]);
       return p;
     }, {});
 

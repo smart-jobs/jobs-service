@@ -32,7 +32,7 @@ module.exports = {
   // 招聘会信息详情, 【全站】
   "fetch": {
     "parameters": {
-      "query": {"_id": "_id", "id": "_id"}
+      "query": ["id"]
     },
     "service": "api.jobfairGlobal.fetch",
   },
