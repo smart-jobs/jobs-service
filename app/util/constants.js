@@ -38,3 +38,9 @@ exports.TicketStatus = {
   NORMAL: '0', // 未用
   USED: '1', // 已使用
 };
+
+exports.LetterStatus = {
+  PENDING: '0', // 待处理
+  ACCEPT: '1', // 已接收
+  REJECT: '2', // 已拒绝
+};
