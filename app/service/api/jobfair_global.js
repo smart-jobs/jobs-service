@@ -31,18 +31,18 @@ class JobinfoGlobalService extends CrudService {
 
     // TODO: 转换输出数据格式
     return rs.map(p => ({
-      corp_id: p.corp.id,
-      corp_name: p.corp.name,
+      corpid: p.corp.id,
+      corpname: p.corp.name,
       jobs: p.jobs,
     }));
   }
 
-  async corp_fetch({ id, fair_id, 'corp.id': corp_id }) {
+  async corp_fetch({ id, fair_id, corpid }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     if (!id) {
-      assert(corp_id, '企业ID不能为空');
+      assert(corpid, '企业ID不能为空');
       assert(fair_id, '招聘会ID不能为空');
-      return await this.mCorp.findOne({ fair_id, 'corp.id': corp_id }).exec();
+      return await this.mCorp.findOne({ fair_id, 'corp.id': corpid }).exec();
     }
 
     return await this.mCorp.findById(id);

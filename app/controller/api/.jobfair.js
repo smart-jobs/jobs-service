@@ -32,7 +32,7 @@ module.exports = {
   // 招聘会信息详情, 【全站】
   "fetch": {
     "parameters": {
-      "query": ["id"]
+      "query": ["!id"]
     },
     "service": "api.jobfairGlobal.fetch",
   },
@@ -72,37 +72,37 @@ module.exports = {
   // 申请参会
   "corp_apply": {
     "parameters": {
-      "query": ["fair_id", "corp.id"] // 招聘会ID, 企业ID
+      "query": ["fair_id", "!corpid"] // 招聘会ID, 企业ID
     },
     "requestBody": ["jobs"] // 招聘会ID, 招聘职位列表
   },
   // 职位信息：增加、删除、修改
   "corp_job_add": { 
     "parameters": {
-      "query": ["fair_id", "corp.id"], // 企业ID
+      "query": ["fair_id", "!corpid"], // 企业ID
     },
     "requestBody": ["name", "count", "requirement"]
   },
   "corp_job_update": { 
     "parameters": {
-      "query": ["job_id", "corp.id"] // job_id: 企业参会招聘职位记录ID，嵌入文档ID
+      "query": ["job_id", "!corpid"] // job_id: 企业参会招聘职位记录ID，嵌入文档ID
     },
     "requestBody": ["name", "count", "requirement"]
   },
   "corp_job_delete": { 
-    "query": ["job_id", "corp.id"] // 企业参会招聘职位记录ID，嵌入文档ID
+    "query": ["job_id", "!corpid"] // 企业参会招聘职位记录ID，嵌入文档ID
   },
   // 批量修改职位信息
   "corp_update": {
     "parameters": {
-      "query": ["fair_id", "corp.id"] // 招聘会ID, 企业ID
+      "query": ["fair_id", "!corpid"] // 招聘会ID, 企业ID
     },
     "requestBody": ["jobs"] // 职位列表，全部替换
   },
   // 获得参展企业信息，【全站】
   "corp_fetch": {
     "parameters": {
-      "query": ["corp.id", "fair_id"] // 招聘会ID+企业ID
+      "query": ["!corpid", "fair_id"] // 招聘会ID+企业ID
     },
     "service": "api.jobfairGlobal.corp_fetch",
   },
@@ -119,7 +119,7 @@ module.exports = {
   // 获得企业参加的招聘会列表
   "corp_mylist": {
     "parameters": {
-      "query": ["corp.id"]
+      "query": ["!corpid"]
     },
     "options": {
       "query": ["skip", "limit"]

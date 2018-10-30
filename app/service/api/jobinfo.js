@@ -13,34 +13,34 @@ class JobinfoService extends CrudService {
     this.model = this.ctx.model.Jobinfo;
   }
 
-  async create({ 'corp.id': corp_id }, { title, content, city }) {
+  async create({ corpid }, { title, content, city }) {
     // TODO: coreid和corpname应该从token中获取，此处暂时由参数传入
-    assert(corp_id, '企业ID不能为空');
+    assert(corpid, '企业ID不能为空');
     // 检查数据
     assert(title, 'title不能为空');
     assert(content, 'content不能为空');
     assert(city, 'city不能为空');
 
     // TODO: 查询企业信息
-    let corp = await this.service.axios.corp.fetch({ id: corp_id });
+    let corp = await this.service.axios.corp.fetch({ id: corpid });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    corp = { id: corp_id, name: corp.corpname };
+    corp = { id: corpid, name: corp.corpname };
 
     // TODO:保存数据
     const res = await this.model.create({ title, content, city, corp, status: JobinfoStatus.PENDING });
     return res;
   }
 
-  async update({ id, 'corp.id': corp_id }, { title, content, city }) {
+  async update({ id, corpid }, { title, content, city }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(corp_id, '企业ID不能为空');
+    assert(corpid, '企业ID不能为空');
     // 检查数据
     assert(id, 'id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corp_id }).exec();
+    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corpid }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }

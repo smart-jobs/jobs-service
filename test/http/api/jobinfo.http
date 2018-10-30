@@ -7,20 +7,20 @@ Accept: application/json
 
 ###
 # 查询指定用户招聘信息
-#GET http://localhost:7001/api/jobinfo/list?corp.id=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobinfo/list?corp.id=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/api/jobinfo/list?corpid=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobinfo/list?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
 # 简要信息列表
-#GET http://localhost:7001/api/jobinfo/simple?corp.id=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobinfo/simple?corp.id=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/api/jobinfo/simple?corpid=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobinfo/simple?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
 # 创建（申请发布）招聘信息
-POST http://localhost:8201/api/jobinfo/create?corp.id=5bd233253931128db02d9849 HTTP/1.1
-#POST http://oa.chinahuian.cn/jobs/jobinfo/create?corp.id=5bd233253931128db02d9849 HTTP/1.1
+POST http://localhost:8201/api/jobinfo/create?corpid=5bd233253931128db02d9849 HTTP/1.1
+#POST http://oa.chinahuian.cn/jobs/jobinfo/create?corpid=5bd233253931128db02d9849 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
@@ -35,8 +35,8 @@ Accept: application/json
 
 ###
 # 修改招聘信息
-#POST http://localhost:7001/api/jobinfo/update?corp.id=5a9e2f4bb357a826385194ca&_id=5aa89cfb3fb2dc3fa87f7337 HTTP/1.1
-POST http://oa.chinahuian.cn/jobs/jobinfo/update?corp.id=5bd233253931128db02d9849&_id=5aa8b10e755c9e107d568242 HTTP/1.1
+#POST http://localhost:7001/api/jobinfo/update?corpid=5a9e2f4bb357a826385194ca&_id=5aa89cfb3fb2dc3fa87f7337 HTTP/1.1
+POST http://oa.chinahuian.cn/jobs/jobinfo/update?corpid=5bd233253931128db02d9849&_id=5aa8b10e755c9e107d568242 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 

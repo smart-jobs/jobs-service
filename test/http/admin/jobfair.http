@@ -7,8 +7,8 @@ Accept: application/json
 
 ###
 # 简要信息列表
-#GET http://localhost:7001/admin/jobfair/simple?corp.id=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobfair/simple?corp.id=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/admin/jobfair/simple?corpid=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/jobfair/simple?corpid=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
@@ -35,8 +35,8 @@ Accept: application/json
 
 ###
 # 修改招聘信息
-#POST http://localhost:7001/admin/jobfair/update?corp.id=5a9e2f4bb357a826385194ca&_id=5aa89cfb3fb2dc3fa87f7337 HTTP/1.1
-POST http://oa.chinahuian.cn/jobs/jobfair/update?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aa8b10e755c9e107d568242 HTTP/1.1
+#POST http://localhost:7001/admin/jobfair/update?corpid=5a9e2f4bb357a826385194ca&_id=5aa89cfb3fb2dc3fa87f7337 HTTP/1.1
+POST http://oa.chinahuian.cn/jobs/jobfair/update?corpid=5a9e2ed7a44cd66c81cfcf61&_id=5aa8b10e755c9e107d568242 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 

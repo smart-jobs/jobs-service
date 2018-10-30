@@ -24,14 +24,14 @@ module.exports = {
   // 企业回复求职信
   "reply": {
     "parameters": {
-      "query": ["id", "corp.id"]
+      "query": ["!id", "!corpid"]
     },
     "requestBody": ["status", "reply"],
   },
   // 企业查询求职信列表
   "list": {
     "parameters": {
-      "query": ["corp.id", "type", "origin"]
+      "query": ["!corpid", "type", "origin"]
     },
     "service": "query",
     "options": {
@@ -44,7 +44,7 @@ module.exports = {
   // 获取求职信详情
   "fetch": {
     "parameters": {
-      "query": ["id", "corp.id"]
+      "query": ["!id"]
     },
     "options": {
       "projection": "+content +reply"

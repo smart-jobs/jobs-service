@@ -29,6 +29,6 @@ module.exports = {
     }
   },
   "fetch": {
-    "query": ["id"]
+    "query": ["!id"]
   }
 };

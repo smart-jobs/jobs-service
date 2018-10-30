@@ -7,20 +7,20 @@ Accept: application/json
 
 ###
 # 查询指定用户校园宣讲会信息
-#GET http://localhost:7001/api/campus/list?corp.id=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/campus/list?corp.id=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/api/campus/list?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/campus/list?corpid=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
 # 简要信息列表
-#GET http://localhost:7001/api/campus/simple?corp.id=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/campus/simple?corp.id=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/api/campus/simple?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+GET http://oa.chinahuian.cn/jobs/campus/simple?corpid=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
 # 创建（申请发布）校园宣讲会信息
-POST http://localhost:8201/api/campus/create?corp.id=5bd233253931128db02d9849 HTTP/1.1
-#POST http://oa.chinahuian.cn/jobs/campus/create?corp.id=5a9e2ed7a44cd66c81cfcf61 HTTP/1.1
+POST http://localhost:8201/api/campus/create?corpid=5bd233253931128db02d9849 HTTP/1.1
+#POST http://oa.chinahuian.cn/jobs/campus/create?corpid=5a9e2ed7a44cd66c81cfcf61 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
@@ -55,8 +55,8 @@ Accept: application/json
 
 ###
 # 修改校园宣讲会信息
-#POST http://localhost:7001/api/campus/update?corp.id=5bd233253931128db02d9849&_id=5aacbdad96910747e4f37433 HTTP/1.1
-POST http://oa.chinahuian.cn/jobs/campus/update?corp.id=5a9e2ed7a44cd66c81cfcf61&_id=5aacc3632708584ca51f3fd3 HTTP/1.1
+#POST http://localhost:7001/api/campus/update?corpid=5bd233253931128db02d9849&_id=5aacbdad96910747e4f37433 HTTP/1.1
+POST http://oa.chinahuian.cn/jobs/campus/update?corpid=5a9e2ed7a44cd66c81cfcf61&_id=5aacc3632708584ca51f3fd3 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 

@@ -13,15 +13,15 @@ class LetterService extends CrudService {
     this.model = this.ctx.model.Letter;
   }
 
-  async reply({ id, 'corp.id': corp_id }, { status, reply }) {
+  async reply({ id, corpid }, { status, reply }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(corp_id, '企业ID不能为空');
+    assert(corpid, '企业ID不能为空');
     // 检查数据
     assert(id, 'id不能为空');
     assert(status === LetterStatus.ACCEPT || status === LetterStatus.REJECT, 'status无效');
 
     // TODO:检查数据是否存在
-    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corp_id }).exec();
+    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corpid }).exec();
     if (!entity) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }

@@ -14,9 +14,9 @@ class CampusTalkService extends CrudService {
     this.model = this.ctx.model.Campus;
   }
 
-  async create({ 'corp.id': corp_id }, { subject, content, city, address, school, date, time, contact, email, jobs }) {
+  async create({ corpid }, { subject, content, city, address, school, date, time, contact, email, jobs }) {
     // TODO: coreid和corpname应该从token中获取，此处暂时由参数传入
-    assert(corp_id, '企业ID不能为空');
+    assert(corpid, '企业ID不能为空');
     // 检查数据
     assert(subject, 'subject不能为空');
     assert(content, 'content不能为空');
@@ -29,11 +29,11 @@ class CampusTalkService extends CrudService {
     assert(isArray(jobs), 'jobs必须是一个对象数组');
 
     // TODO: 查询企业信息
-    let corp = await this.service.axios.corp.fetch({ id: corp_id });
+    let corp = await this.service.axios.corp.fetch({ id: corpid });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    corp = { id: corp_id, name: corp.corpname };
+    corp = { id: corpid, name: corp.corpname };
 
     // TODO:保存数据
     const data = { subject, content, corp, status: CampusTalkStatus.PENDING,
@@ -43,14 +43,14 @@ class CampusTalkService extends CrudService {
     return res;
   }
 
-  async update({ id, 'corp.id': corp_id }, { subject, content, city, address, school, time, contact, email, jobs }) {
+  async update({ id, corpid }, { subject, content, city, address, school, time, contact, email, jobs }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
-    assert(corp_id, '企业ID不能为空');
+    assert(corpid, '企业ID不能为空');
     // 检查数据
     assert(id, 'id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corp_id }).exec();
+    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corpid }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }

@@ -1,19 +1,19 @@
 module.exports = {
   "create": {
     "parameters": {
-      "query": ["corp.id", "corp.name"]
+      "query": ["!corpid"]
     },
     "requestBody": ["subject", "content", "city", "address", "school", "time", "contact", "email", "jobs", "date"]
   },
   "update": {
     "parameters": {
-      "query": ["id", "corp.id"]
+      "query": ["!id", "!corpid"]
     },
     "requestBody": ["subject", "content", "city", "address", "school", "time", "contact", "email", "jobs"]
   },
   "list": {
     "parameters": {
-      "query": ["corp.id"]
+      "query": ["!corpid"]
     },
     "service": "query",
     "options": {
@@ -28,7 +28,7 @@ module.exports = {
   },
   "query": {
     "parameters": {
-      "query": ["corp.id"],
+      "query": ["!corpid"],
       "options": {
         "status": "0"
       }
@@ -46,7 +46,7 @@ module.exports = {
   },
   "simple": {
     "parameters": {
-      "query": ["corp.id"],
+      "query": ["!corpid"],
       "options": {
         "status": "0"
       }
@@ -67,14 +67,14 @@ module.exports = {
   // 【全站】查询信息详情
   "fetch": {
     "parameters": {
-      "query": ["id"],
+      "query": ["!id"],
     },
     "service": "api.campusGlobal.fetch",
   },
   // 【全站】查询信息详情
   "query_g": {
     "parameters": {
-      "query": ["corp.id"],
+      "query": ["!corpid"],
       "options": {
         "status": "0"
       }
@@ -93,7 +93,7 @@ module.exports = {
   // 【全站】查询信息摘要
   "simple_g": {
     "parameters": {
-      "query": ["corp.id"],
+      "query": ["!corpid"],
       "options": {
         "status": "0"
       }
