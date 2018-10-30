@@ -1,0 +1,47 @@
+###
+# 创建简历
+POST http://localhost:8201/api/resume/create?userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "简历3",
+  "content": "基础扎实，学习能力强，肯吃苦，爱钻研。",
+  "info": {
+    "csrq": "1997-07-01",
+    "xl": "本科",
+    "yxmc": "测试一校",
+    "zymc": "软件工程"
+  }, 
+  "contact": {
+    "mobile": "13900000000",
+    "email": "zsf@qq.com"
+  } 
+}
+
+###
+# 查询简历列表
+GET http://localhost:8201/api/resume/list?userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+###
+# 修改简历
+POST http://localhost:8201/api/resume/update?id=5bd853b107669d776c50564e&userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "info": {
+    "csrq": "1998-07-01"
+  }, 
+  "contact": {
+    "mobile": "13900000001"
+  }
+}
+
+###
+# 删除简历
+GET http://localhost:8201/api/resume/delete?id=5bd856c211b8bf7580f7978d&userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json

@@ -9,7 +9,9 @@ module.exports = {
     "parameters": {
       "query": ["!id", "!userid"]
     },
-    "requestBody": ["title", "content", "info", "contact"]
+    "requestBody": ["title", "content",
+      "info.crrq", "info.xl", "info.yxmc", "info.zymc",
+      "contact.mobile", "contact.email"]
   },
   "delete": {
     "parameters": {

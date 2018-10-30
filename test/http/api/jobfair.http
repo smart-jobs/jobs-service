@@ -21,7 +21,6 @@ Accept: application/json
 ###
 # 企业申请展位
 POST http://localhost:8201/api/jobfair/corp/apply?corp.id=5bd233253931128db02d9849&fair_id=5bd1042f3c82e822ecf996f0 HTTP/1.1
-#POST http://oa.chinahuian.cn/jobs/jobfair/corp/apply?corp.id=5a9e2ed7a44cd66c81cfcf61&corp.name=福瑞科技&_id=5aaa24e61ab25764103600a2 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 X-Tenant: 99991

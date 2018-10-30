@@ -31,8 +31,13 @@ class LetterGlobalService extends CrudService {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, `${typeName}不存在`);
     }
 
+    // 使用招聘信息所在分站的租户信息
+    job = job.toObject();
+    console.log('job._tenant: ', job._tenant, job._id, job.__v);
+    const model = this.app.tenantModel(job._tenant).Letter;
+
     // TODO: 检查简历信息
-    const resume = await this.service.api.resume.fetch({ id: resumeid });
+    const resume = await this.service.api.resume.fetch({ id: resumeid }, { projection: '+content' });
     if (!resume) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '简历信息不存在');
     }
@@ -44,16 +49,16 @@ class LetterGlobalService extends CrudService {
     }
 
     // TODO: 检查数据是否存在
-    let entity = await this.model.findOne({ userid, 'corp.id': corpid, origin });
+    let entity = await model.findOne({ userid, 'corp.id': corpid, origin });
     if (entity) {
       throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复投递求职信');
     }
 
     // TODO: 保存数据
-    entity = await this.model.create({
+    entity = await model.create({
       userid, type, origin,
       title: job.title || job.subject,
-      corp: { id: corp._id, name: corp.name },
+      corp: { id: corp._id, name: corp.corpname },
       content: resume.content,
       info: resume.info,
       contact: resume.contact,

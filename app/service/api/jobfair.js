@@ -32,7 +32,7 @@ class JobinfoService extends CrudService {
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    const corp_name = corp.name;
+    const corp_name = corp.corpname;
 
     // TODO:检查数据是否存在
     const doc = await this.model.findById(ObjectId(fair_id)).exec();

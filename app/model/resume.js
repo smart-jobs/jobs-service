@@ -13,6 +13,7 @@ const SchemaDefine = {
   info: { // 基本信息
     xm: String, // 姓名
     xb: String, // 性别
+    csrq: String, // 出生日期
     xl: String, // 学历
     yxmc: String, // 毕业院校
     zymc: String, // 专业名称

@@ -10,7 +10,7 @@ const SchemaDefine = {
   userid: { type: String, require: true }, // 用户ID
   title: { type: String, required: true, maxLength: 128 }, // 职位标题
   content: { type: String, required: true, maxLength: 102400, select: false }, // 简历内容
-  reply: { type: String, required: true, maxLength: 102400, select: false }, // 回复内容
+  reply: { type: String, required: false, maxLength: 102400, select: false }, // 回复内容
   status: { type: String, default: '0' }, // 接受: 0-新投递，未接收；1-已接收；2-已回复
   type: { type: String, default: '0' }, // 求职信类型：0-招聘信息；1-招聘会；
   origin: { type: String, require: true }, // 信息来源ID：招聘信息ID、招聘会ID
@@ -21,6 +21,7 @@ const SchemaDefine = {
   info: { // 学生基本信息
     xm: String, // 姓名
     xb: String, // 性别
+    csrq: String, // 出生日期
     xl: String, // 学历
     yxmc: String, // 毕业院校
     zymc: String, // 专业名称

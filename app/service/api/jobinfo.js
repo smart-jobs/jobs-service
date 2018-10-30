@@ -26,7 +26,7 @@ class JobinfoService extends CrudService {
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    corp = { id: corp_id, name: corp.name };
+    corp = { id: corp_id, name: corp.corpname };
 
     // TODO:保存数据
     const res = await this.model.create({ title, content, city, corp, status: JobinfoStatus.PENDING });

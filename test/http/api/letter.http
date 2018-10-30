@@ -1,0 +1,45 @@
+###
+# 投递简历
+POST http://localhost:8201/api/letter/deliver?userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "corpid": "5bd233253931128db02d9849",
+  "resumeid": "5bd853b107669d776c50564e",
+  "type": "1",
+  "origin": "5bd1042f3c82e822ecf996f0"
+}
+
+###
+# 我的求职信
+GET http://localhost:8201/api/letter/mylist?userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+
+###
+# 企业查询求职信列表
+GET http://localhost:8201/api/letter/list?corp.id=5bd233253931128db02d9849 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+X-Tenant: 99991
+
+
+###
+# 回复求职信
+POST http://localhost:8201/api/letter/reply?id=5bd86c3fd4c89e9d2c53f12a&corp.id=5bd233253931128db02d9849 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+X-Tenant: 99991
+
+{
+  "reply": "很抱歉，你不符合我们用人标准", 
+  "status": "2"
+}
+
+###
+# 求职信详情
+GET http://localhost:8201/api/letter/fetch?id=5bd85a8eae4eec73bc8d5670 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
