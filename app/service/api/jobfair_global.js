@@ -50,14 +50,14 @@ class JobinfoGlobalService extends CrudService {
 
 
   // 申请招聘会门票
-  async ticket_apply({ fair_id, 'user.id': user_id }) {
+  async ticket_apply({ fair_id, userid }) {
     // TODO: user应该从token中获取，此处暂时由参数传入
     // 检查数据
     assert(fair_id, '招聘会ID不能为空');
-    assert(user_id, '用户ID不能为空');
+    assert(userid, '用户ID不能为空');
 
     // TODO: 查询用户信息
-    const user = await this.service.axios.user.fetch({ id: user_id });
+    const user = await this.service.axios.user.fetch({ id: userid });
     if (!user) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '用户信息不存在');
     }
@@ -77,7 +77,7 @@ class JobinfoGlobalService extends CrudService {
     const { name, yxdm } = user;
 
     // TODO: 检查是否已申请
-    let apply = await this.mTicket.findOne({ fair_id, 'user.id': user_id }).exec();
+    let apply = await this.mTicket.findOne({ fair_id, userid }).exec();
     if (apply) {
       throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复申请');
     }
@@ -96,18 +96,18 @@ class JobinfoGlobalService extends CrudService {
     }
 
     // TODO:保存数据
-    apply = await this.mTicket.create({ fair_id, origin, type, user: { id: user_id, name, yxdm }, verify: { status: TicketStatus.NORMAL } });
+    apply = await this.mTicket.create({ fair_id, origin, type, user: { id: userid, name, yxdm }, verify: { status: TicketStatus.NORMAL } });
 
     return apply;
   }
 
   // 查询用户所申请的所有门票列表
-  async ticket_mylist({ 'user.id': user_id }, { skip = 0, limit = 100 }) {
+  async ticket_mylist({ userid }, { skip = 0, limit = 100 }) {
     // TODO: user_id应该从token中获取，此处暂时由参数传入
-    assert(user_id, '用户ID不能为空');
+    assert(userid, '用户ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    const rs = await this.mTicket.find({ 'user.id': user_id },
+    const rs = await this.mTicket.find({ 'user.id': userid },
       null,
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 

@@ -131,7 +131,7 @@ module.exports = {
   // 领取门票, 【全站】
   "ticket_apply": {
     "parameters": {
-      "query": ["fair_id", "user.id"] // 招聘会ID, 学生ID
+      "query": ["!fair_id", "!userid"] // 招聘会ID, 学生ID
     },
     "service": "api.jobfairGlobal.ticket_apply",
   },
@@ -145,7 +145,7 @@ module.exports = {
   // 学生领取的门票列表, 【全站】
   "ticket_mylist": {
     "parameters": {
-      "query": ["user.id"] // 学生ID
+      "query": ["!userid"] // 学生ID
     },
     "options": {
       "query": ["skip", "limit"]
