@@ -50,7 +50,7 @@ X-Tenant: 99991
 
 ###
 # 批量修改招聘职位信息
-POST http://localhost:8201/api/jobfair/corp/update?corpid=5bd233253931128db02d9849&_id=5bd104ae3c82e822ecf996f1 HTTP/1.1
+POST http://localhost:8201/api/jobfair/corp/update?corpid=5bd233253931128db02d9849&fair_id=5bd1042f3c82e822ecf996f0 HTTP/1.1
 #POST http://oa.chinahuian.cn/jobs/jobfair/corp/update?corpid=5a9e2ed7a44cd66c81cfcf61&_id=5aaa24e61ab25764103600a2 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
@@ -70,14 +70,14 @@ X-Tenant: 99991
 
 ###
 # 获取招聘职位信息
-GET http://localhost:8201/api/jobfair/corp/fetch?corpid=5bd233253931128db02d9849&_id=5bd104ae3c82e822ecf996f1 HTTP/1.1
+GET http://localhost:8201/api/jobfair/corp/fetch?corpid=5bd233253931128db02d9849&fair_id=5bd1042f3c82e822ecf996f0 HTTP/1.1
 #GET http://oa.chinahuian.cn/jobs/jobfair/corp/fetch?corpid=5a9e2ed7a44cd66c81cfcf61&_id=5aaa24e61ab25764103600a2 HTTP/1.1
 Accept: application/json
-X-Tenant: 99992
+X-Tenant: 99991
 
 ###
 # 添加招聘职位信息
-POST http://localhost:8201/api/jobfair/corp/job/add?corpid=5bd233253931128db02d9849&_id=5bd104ae3c82e822ecf996f1 HTTP/1.1
+POST http://localhost:8201/api/jobfair/corp/job/add?corpid=5bd233253931128db02d9849&fair_id=5bd1042f3c82e822ecf996f0 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 X-Tenant: 99991
@@ -90,7 +90,7 @@ X-Tenant: 99991
 
 ###
 # 修改招聘职位信息
-POST http://localhost:8201/api/jobfair/corp/job/update?corpid=5bd233253931128db02d9849&_id=5bd11ee0eab958f59cbaff8a HTTP/1.1
+POST http://localhost:8201/api/jobfair/corp/job/update?corpid=5bd233253931128db02d9849&job_id=5bd87b8225c5383404993b72 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 X-Tenant: 99991
@@ -110,13 +110,13 @@ X-Tenant: 99991
 
 ###
 # 领取招聘会门票
-POST http://localhost:8201/api/jobfair/ticket/apply?fair_id=5bd1042f3c82e822ecf996f0&user.id=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
+POST http://localhost:8201/api/jobfair/ticket/apply?fair_id=5bd1042f3c82e822ecf996f0&userid=5bd2520ce8e38ba1e8317ec0 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
 ###
 # 我的招聘会门票列表
-GET http://localhost:8201/api/jobfair/ticket/mylist?user.id=5a9e2f4bb357a826385194cc HTTP/1.1
+GET http://localhost:8201/api/jobfair/ticket/mylist?userid=5a9e2f4bb357a826385194cc HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
