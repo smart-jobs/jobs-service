@@ -1,24 +1,24 @@
 module.exports = {
   "create": {
     "parameters": {
-      "query": {"userid": "userid", "user.id": "userid"}
+      "query": ["!userid"]
     },
-    "requestBody": ["title", "content", "info", "contact"]
+    "requestBody": ["!title", "!content", "!info", "!contact"]
   },
   "update": {
     "parameters": {
-      "query": {"id": "id", "userid": "userid", "user.id": "userid"}
+      "query": ["!id", "!userid"]
     },
     "requestBody": ["title", "content", "info", "contact"]
   },
   "delete": {
     "parameters": {
-      "query": {"id": "id", "userid": "userid", "user.id": "userid"}
+      "query": ["!id", "!userid"]
     },
   },
   "list": {
     "parameters": {
-      "query": {"userid": "userid", "user.id": "userid"}
+      "query": ["!userid"]
     },
     "service": "query",
     "options": {

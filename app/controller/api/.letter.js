@@ -2,7 +2,7 @@ module.exports = {
   // 投递求职信
   "deliver": {
     "parameters": {
-      "query": {"userid": "userid", "user.id": "userid"}
+      "query": ["!userid"]
     },
     "requestBody": ["corpid", "resumeid", "type", "origin"],
     "service": "api.letterGlobal.deliver",
@@ -10,7 +10,7 @@ module.exports = {
   // 学生的求职信列表
   "mylist": {
     "parameters": {
-      "query": {"userid": "userid", "user.id": "userid"}
+      "query": ["!userid"]
     },
     "options": {
       "query": ["skip", "limit"],

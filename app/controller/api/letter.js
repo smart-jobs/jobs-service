@@ -9,7 +9,7 @@ const { CrudController } = require('naf-framework-mongoose/lib/controller');
 class LetterController extends Controller {
   constructor(ctx) {
     super(ctx);
-    this.service = this.ctx.service.api.jobinfo;
+    this.service = this.ctx.service.api.letter;
   }
 }
 

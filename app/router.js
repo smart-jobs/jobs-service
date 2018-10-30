@@ -59,7 +59,7 @@ module.exports = app => {
   router.get('/api/letter/mylist', controller.api.letter.mylist); // 【全站】学生求职信列表
   router.post('/api/letter/reply', controller.api.letter.reply); // 企业回复求职信，修改求职信状态
   router.get('/api/letter/list', controller.api.letter.list); // 企业查询求职信列表
-  router.get('/api/letter/fetch', controller.api.resume.fetch); // 【全站】获得求职信详细信息
+  router.get('/api/letter/fetch', controller.api.letter.fetch); // 【全站】获得求职信详细信息
 
   // 管理接口
   // 校园招聘信息
