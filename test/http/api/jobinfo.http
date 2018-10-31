@@ -7,14 +7,21 @@ Accept: application/json
 
 ###
 # 查询指定用户招聘信息
-#GET http://localhost:7001/api/jobinfo/list?corpid=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobinfo/list?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+GET http://localhost:8201/api/jobinfo/list?corpid=5bd98f8d89e70a6d23896cfd&skip=0&limit=10 HTTP/1.1
 Accept: application/json
+X-Tenant: 99992
 
 ###
 # 简要信息列表
-#GET http://localhost:7001/api/jobinfo/simple?corpid=5a9e2f4bb357a826385194ca&skip=0&limit=10 HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobinfo/simple?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+GET http://localhost:8201/api/jobinfo/simple?corpid=5bd98f8d89e70a6d23896cfd&skip=0&limit=10 HTTP/1.1
+#GET http://oa.chinahuian.cn/jobs/jobinfo/simple?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
+Accept: application/json
+X-Tenant: 99992
+
+###
+# 简要信息列表【全站】
+GET http://localhost:8201/api/jobinfo/simple_g?skip=0&limit=10 HTTP/1.1
+#GET http://oa.chinahuian.cn/jobs/jobinfo/simple?corpid=5bd233253931128db02d9849&skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
@@ -46,8 +53,8 @@ Accept: application/json
 
 ###
 # 获取招聘信息
-#GET http://localhost:7001/api/jobinfo/fetch?_id=5aa897caaeee154a941d4e4a HTTP/1.1
-GET http://oa.chinahuian.cn/jobs/jobinfo/fetch?_id=5aa8b10e755c9e107d568242 HTTP/1.1
+GET http://localhost:8201/api/jobinfo/fetch?_id=5aa897caaeee154a941d4e4a HTTP/1.1
+#GET http://oa.chinahuian.cn/jobs/jobinfo/fetch?_id=5aa8b10e755c9e107d568242 HTTP/1.1
 Accept: application/json
 
 
