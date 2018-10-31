@@ -16,7 +16,7 @@ const SchemaDefine = {
     name: String,
   },
   city: CodeNamePair,
-  date: { type: String, required: true }, // 发布日期，格式：YYYY-MM-DD
+  date: { type: String, required: false }, // 发布日期，格式：YYYY-MM-DD
   unit: { type: String, required: true }, // 发布单位（学校代码）
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });

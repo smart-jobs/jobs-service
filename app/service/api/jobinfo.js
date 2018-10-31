@@ -29,7 +29,7 @@ class JobinfoService extends CrudService {
     corp = { id: corpid, name: corp.corpname };
 
     // TODO:保存数据
-    const res = await this.model.create({ title, content, city, corp, status: JobinfoStatus.PENDING });
+    const res = await this.model.create({ title, content, city, corp, status: JobinfoStatus.PENDING, unit: this.tenant });
     return res;
   }
 
