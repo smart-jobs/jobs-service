@@ -136,3 +136,9 @@ Accept: application/json
   "_id": "5bd1042f3c82e822ecf996f0",
   "password": "123456"
 }
+
+###
+# 查询招聘会参展企业列表
+GET http://localhost:8201/api/jobfair/corp/list?fair_id=5bd1042f3c82e822ecf996f0&skip=0&limit=10 HTTP/1.1
+#GET http://oa.chinahuian.cn/jobs/jobfair/corp/mylist?corpid=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
+Accept: application/json
