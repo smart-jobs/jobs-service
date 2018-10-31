@@ -28,7 +28,7 @@ module.exports = {
   },
   "query": {
     "parameters": {
-      "query": ["!corpid"],
+      "query": ["corpid"],
       "options": {
         "status": "0"
       }
@@ -46,7 +46,7 @@ module.exports = {
   },
   "simple": {
     "parameters": {
-      "query": ["!corpid"],
+      "query": ["corpid"],
       "options": {
         "status": "0"
       }
@@ -74,7 +74,7 @@ module.exports = {
   // 【全站】查询信息详情
   "query_g": {
     "parameters": {
-      "query": ["!corpid"],
+      "query": ["corpid"],
       "options": {
         "status": "0"
       }
@@ -93,7 +93,7 @@ module.exports = {
   // 【全站】查询信息摘要
   "simple_g": {
     "parameters": {
-      "query": ["!corpid"],
+      "query": ["corpid"],
       "options": {
         "status": "0"
       }
