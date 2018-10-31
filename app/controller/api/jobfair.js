@@ -15,8 +15,8 @@ class JobfairController extends Controller {
 
   // 查询当天招聘会简要信息列表
   async today() {
-    const date = moment().format('L'); // ex. 2018-10-24
-    const { jobfairGlobal: service } = this.ctx.servcie.api;
+    const date = moment().format('YYYY-MM-DD'); // ex. 2018-10-24
+    const { jobfairGlobal: service } = this.ctx.service.api;
     const rs = await service.query({ date }, { projection: { unit: 1, subject: 1 } });
     this.ctx.ok({ data: rs });
   }

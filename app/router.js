@@ -33,7 +33,7 @@ module.exports = app => {
   router.get('/api/jobfair/corp/mylist', controller.api.jobfair.corp_mylist);// 企业参与的招聘会信息列表
   router.post('/api/jobfair/corp/job/add', controller.api.jobfair.corp_job_add);// 企业添加招聘职位信息
   router.post('/api/jobfair/corp/job/update', controller.api.jobfair.corp_job_update);// 企业修改招聘职位信息
-  router.psot('/api/jobfair/corp/job/delete', controller.api.jobfair.corp_job_delete);// 企业删除招聘职位信息
+  router.post('/api/jobfair/corp/job/delete', controller.api.jobfair.corp_job_delete);// 企业删除招聘职位信息
   router.post('/api/jobfair/ticket/apply', controller.api.jobfair.ticket_apply);// 【全站】学生领取招聘会门票
   router.get('/api/jobfair/ticket/mylist', controller.api.jobfair.ticket_mylist);// 【全站】学生申请的招聘会门票列表
   router.post('/api/jobfair/ticket/verify', controller.api.jobfair.ticket_verify);// 【全站】招聘会门票扫码验证
