@@ -74,7 +74,7 @@ class JobinfoGlobalService extends CrudService {
       throw new BusinessError(ErrorCode.DATA_INVALID, '招聘会已结束');
     }
 
-    const { name, yxdm } = user;
+    const { xm: name, yxdm } = user;
 
     // TODO: 检查是否已申请
     let apply = await this.mTicket.findOne({ fair_id, userid }).exec();

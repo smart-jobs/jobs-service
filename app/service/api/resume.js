@@ -35,6 +35,7 @@ class ResumeService extends CrudService {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '用户信息不存在');
     }
     const { xm, xb } = user;
+    console.log('user:', user);
 
     // TODO:保存数据
     const res = await this.model.create({
