@@ -2,12 +2,12 @@
 
 const { CrudService } = require('naf-framework-mongoose/lib/service');
 
-class JobfairService extends CrudService {
+class CampusService extends CrudService {
   constructor(ctx) {
     super(ctx);
-    this.model = this.ctx.model.Jobfair;
+    this.model = this.ctx.model.Campus;
   }
 
 }
 
-module.exports = JobfairService;
+module.exports = CampusService;

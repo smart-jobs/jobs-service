@@ -103,7 +103,7 @@ X-Tenant: 99991
 
 ###
 # 删除招聘职位信息
-GET http://localhost:8201/api/jobfair/corp/job/delete?corpid=5bd233253931128db02d9849&_id=5bd11ee0eab958f59cbaff8a HTTP/1.1
+GET http://localhost:8201/api/jobfair/corp/job/delete?corpid=5bd233253931128db02d9849&id=5bd11ee0eab958f59cbaff8a HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 X-Tenant: 99991

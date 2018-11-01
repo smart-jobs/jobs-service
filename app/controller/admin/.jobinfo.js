@@ -1,15 +1,25 @@
 module.exports = {
   "create": {
-    "requestBody": ["type", "subject", "content", "city", "address", "time", "date", "unit"]
+    "requestBody": ["title", "content", "city"]
   },
   "update": {
     "query": ["!id"],
-    "requestBody": ["type", "subject", "content", "city", "address", "time", "date", "unit"]
+    "requestBody": ["title", "content", "city"]
+  },
+  "delete": {
+    "query": ["!id"]
+  },
+  "review": {
+    "parameters": {
+      "query": ["!id"]
+    },
+    "requestBody": ["!status"]
   },
   "query": {
     "parameters": {
-      "query": ["status"],
+      "query": ["status"]
     },
+    "service": "query",
     "options": {
       "query": ["skip", "limit"],
       "sort": ["meta.createAt"],
