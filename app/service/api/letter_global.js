@@ -22,7 +22,7 @@ class LetterGlobalService extends CrudService {
     // TODO: 检查就业信息来源
     let job;
     if (type === '0') {
-      job = await this.service.api.jobfairGlobal.fetch({ id: origin });
+      job = await this.service.api.jobinfoGlobal.fetch({ id: origin });
     } else {
       job = await this.service.api.jobfairGlobal.fetch({ id: origin });
     }
