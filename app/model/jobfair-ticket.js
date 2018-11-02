@@ -24,6 +24,7 @@ const schema = new Schema(SchemaDefine);
 schema.index({ fair_id: 1 });
 schema.index({ fair_id: 1, type: 1, origin: 1 }); // 招聘会-门票类型-用户来源
 schema.index({ 'user.id': 1 });
+schema.index({ 'user.id': 1, fair_id: 1 }, { unique: true });
 schema.plugin(metaPlugin);
 
 module.exports = app => {

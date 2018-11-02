@@ -77,7 +77,7 @@ class JobinfoGlobalService extends CrudService {
     const { xm: name, yxdm } = user;
 
     // TODO: 检查是否已申请
-    let apply = await this.mTicket.findOne({ fair_id, userid }).exec();
+    let apply = await this.mTicket.findOne({ fair_id, 'user.id': userid }).exec();
     if (apply) {
       throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复申请');
     }
