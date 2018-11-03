@@ -3,7 +3,6 @@
  */
 'use strict';
 const Schema = require('mongoose').Schema;
-const { CodeNamePair } = require('naf-framework-mongoose/lib/model/schema');
 const metaPlugin = require('naf-framework-mongoose/lib/model/meta-plugin');
 
 // 职位信息
