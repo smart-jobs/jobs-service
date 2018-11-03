@@ -22,9 +22,7 @@ const SchemaDefine = {
     id: String,
     name: String,
   },
-  city: CodeNamePair, // 宣讲城市
   address: { type: String, required: true, maxLength: 128, default: '' }, // 宣讲地址
-  school: { type: String, required: true, maxLength: 64 }, // 宣讲学校
   time: { type: String, required: true, maxLength: 64 }, // 举办时间说明
   contact: { type: String, required: true, maxLength: 64 }, // 招聘联系电话
   email: { type: String, required: true, maxLength: 128 }, // 简历投递邮箱

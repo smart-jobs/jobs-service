@@ -14,14 +14,12 @@ class CampusTalkService extends CrudService {
     this.model = this.ctx.model.Campus;
   }
 
-  async create({ corpid }, { subject, content, city, address, school, date, time, contact, email, jobs }) {
+  async create({ corpid }, { subject, content, address, date, time, contact, email, jobs }) {
     // TODO: coreid和corpname应该从token中获取，此处暂时由参数传入
     assert(corpid, '企业ID不能为空');
     // 检查数据
     assert(subject, 'subject不能为空');
     assert(content, 'content不能为空');
-    assert(city, 'city不能为空');
-    assert(school, 'school不能为空');
     assert(time, 'time不能为空');
     assert(contact, 'contact不能为空');
     assert(email, 'email不能为空');
@@ -37,13 +35,13 @@ class CampusTalkService extends CrudService {
 
     // TODO:保存数据
     const data = { subject, content, corp, status: CampusTalkStatus.PENDING,
-      city, address, school, time, contact, email, jobs, date, unit: this.tenant };
+      address, time, contact, email, jobs, date, unit: this.tenant };
 
     const res = await this.model.create(data);
     return res;
   }
 
-  async update({ id, corpid }, { subject, content, city, address, school, time, contact, email, jobs }) {
+  async update({ id, corpid }, { subject, content, address, time, contact, email, jobs }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     assert(corpid, '企业ID不能为空');
     // 检查数据
@@ -61,7 +59,7 @@ class CampusTalkService extends CrudService {
     }
 
     // TODO:保存数据
-    const data = { subject, content, city, address, school, time, contact, email, jobs };
+    const data = { subject, content, address, time, contact, email, jobs };
     const res = await this.model.findByIdAndUpdate(id, data).exec();
     return res;
   }
