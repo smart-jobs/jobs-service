@@ -128,7 +128,7 @@ module.exports = {
   // 企业入场签到
   "corp_checkin": {
     "parameters": {
-      "query": ["!fair_id", "!corpid"] // 招聘会ID, 企业ID
+      "query": ["!fair_id", "!corpid", "device"] // 招聘会ID, 企业ID
     },
     "service": "api.jobfairGlobal.corp_checkin",
   },
