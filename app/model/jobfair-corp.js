@@ -26,11 +26,19 @@ const SchemaDefine = {
   },
   // 审核状态: 0-审核通过、1-未审核、2-审核失败
   status: { type: String, required: true, maxLength: 64, default: '0' },
+  // 签到状态: 0-未签到、1-已签到
+  checkin: {
+    status: { type: String, default: '0' }, // 验证状态: 0-未用、1-已用
+    time: Date, // 扫码时间
+    device: String, // 扫码设备标识（小程序用户的openid）,
+  },
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
 schema.index({ fair_id: 1 });
 schema.index({ fair_id: 1, status: 1 });
 schema.index({ 'corp.id': 1 });
+schema.index({ fair_id: 1, checkin: 1 });
+schema.index({ fair_id: 1, status: 1, checkin: 1 });
 schema.plugin(metaPlugin);
 
 module.exports = app => {

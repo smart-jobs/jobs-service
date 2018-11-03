@@ -142,3 +142,9 @@ Accept: application/json
 GET http://localhost:8201/api/jobfair/corp/list?fair_id=5bd1042f3c82e822ecf996f0&skip=0&limit=10 HTTP/1.1
 #GET http://oa.chinahuian.cn/jobs/jobfair/corp/mylist?corpid=5a9e2ed7a44cd66c81cfcf61&skip=0&limit=10 HTTP/1.1
 Accept: application/json
+
+###
+# 招聘会扫码签到
+POST http://localhost:8201/api/jobfair/corp/checkin?corpid=5a9e2f4bb357a826385194ca&fair_id=5bd1042f3c82e822ecf996f0&device=123 HTTP/1.1
+Content-Type: application/json
+Accept: application/json

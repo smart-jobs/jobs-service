@@ -31,6 +31,7 @@ module.exports = app => {
   router.post('/api/jobfair/corp/update', controller.api.jobfair.corp_update);// 企业预定展位信息修改
   router.get('/api/jobfair/corp/fetch', controller.api.jobfair.corp_fetch);// 获得指定招聘会中指定企业预定展位信息
   router.get('/api/jobfair/corp/mylist', controller.api.jobfair.corp_mylist);// 企业参与的招聘会信息列表
+  router.post('/api/jobfair/corp/checkin', controller.api.jobfair.corp_checkin);// 企业招聘会入场签到
   router.post('/api/jobfair/corp/job/add', controller.api.jobfair.corp_job_add);// 企业添加招聘职位信息
   router.post('/api/jobfair/corp/job/update', controller.api.jobfair.corp_job_update);// 企业修改招聘职位信息
   router.post('/api/jobfair/corp/job/delete', controller.api.jobfair.corp_job_delete);// 企业删除招聘职位信息

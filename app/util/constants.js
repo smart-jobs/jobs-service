@@ -44,3 +44,9 @@ exports.LetterStatus = {
   ACCEPT: '1', // 已接收
   REJECT: '2', // 已拒绝
 };
+
+exports.CheckinStatus = {
+  PENDING: '0', // 未签到
+  FINISH: '1', // 已签到
+};
+

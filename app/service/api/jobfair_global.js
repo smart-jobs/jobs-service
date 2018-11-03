@@ -7,7 +7,7 @@ const _ = require('lodash');
 const moment = require('moment');
 const { ObjectId } = require('mongoose').Types;
 const { CrudService } = require('naf-framework-mongoose/lib/service');
-const { JobfairCorpStatus, UserOrigin, TicketType, TicketStatus } = require('../../util/constants');
+const { JobfairCorpStatus, UserOrigin, TicketType, TicketStatus, CheckinStatus } = require('../../util/constants');
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 const { isNullOrUndefined } = require('naf-core').Util;
 
@@ -48,6 +48,26 @@ class JobinfoGlobalService extends CrudService {
     return await this.mCorp.findById(id);
   }
 
+
+  async corp_checkin({ fair_id, corpid, device }) {
+    assert(corpid, '企业ID不能为空');
+    assert(fair_id, '招聘会ID不能为空');
+
+    const doc = await this.mCorp.findOne({ fair_id, 'corp.id': corpid }).exec();
+    if (doc.checkin && doc.checkin.status === CheckinStatus.FINISH) {
+      throw new BusinessError(ErrorCode.SERVICE_FAULT, '不能重复签到');
+    }
+    // TODO:保存数据
+    if (doc.checkin) {
+      doc.checkin.status = CheckinStatus.FINISH;
+      doc.checkin.device = device;
+    } else {
+      doc.checkin = { status: CheckinStatus.FINISH, device };
+    }
+    doc.checkin.time = new Date();
+    await doc.save();
+    return { corp: doc.corp, checkin: doc.checkin };
+  }
 
   // 申请招聘会门票
   async ticket_apply({ fair_id, userid }) {
@@ -150,6 +170,7 @@ class JobinfoGlobalService extends CrudService {
     } else {
       doc.verify = { status: TicketStatus.USED, device };
     }
+    doc.verify.time = new Date();
     await doc.save();
 
     return doc;

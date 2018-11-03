@@ -125,6 +125,13 @@ module.exports = {
       "query": ["skip", "limit"]
     }
   },
+  // 企业入场签到
+  "corp_checkin": {
+    "parameters": {
+      "query": ["!fair_id", "!corpid"] // 招聘会ID, 企业ID
+    },
+    "service": "api.jobfairGlobal.corp_checkin",
+  },
   /**
    * 入场门票相关接口
    */
