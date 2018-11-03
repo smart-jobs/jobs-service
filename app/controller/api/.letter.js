@@ -31,7 +31,7 @@ module.exports = {
   // 企业查询求职信列表
   "list": {
     "parameters": {
-      "query": ["!corpid", "type", "origin"]
+      "query": {"!corpid":"corp.id", "type":"type", "origin":"origin"}
     },
     "service": "query",
     "options": {
