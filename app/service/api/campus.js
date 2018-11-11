@@ -31,10 +31,10 @@ class CampusTalkService extends CrudService {
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    corp = { id: corpid, name: corp.corpname };
+    corp = { corpid, corpname: corp.corpname };
 
     // TODO:保存数据
-    const data = { subject, content, corp, status: CampusTalkStatus.PENDING,
+    const data = { subject, content, ...corp, status: CampusTalkStatus.PENDING,
       address, time, contact, email, jobs, date, unit: this.tenant };
 
     const res = await this.model.create(data);

@@ -10,7 +10,7 @@
     "egg": "^2.13.0",
     "egg-scripts": "^2.10.0",
     "moment": "^2.22.2",
-    "naf-framework-mongoose": "^0.5.4"
+    "naf-framework-mongoose": "^0.5.5"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -39,7 +39,6 @@
     "autod": "autod",
     "pm2": "pm2 start server.js --name=jobs-service",
     "restart": "pm2 restart jobs-service"
-
   },
   "ci": {
     "version": "8"

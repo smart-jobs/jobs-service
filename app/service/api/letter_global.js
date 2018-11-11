@@ -43,10 +43,11 @@ class LetterGlobalService extends CrudService {
     }
 
     // TODO: 检查企业信息
-    const corp = await this.service.axios.corp.fetch({ corpid });
+    let corp = await this.service.axios.corp.fetch({ corpid });
     if (!corp) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '企业信息不存在');
     }
+    corp = { corpid, corpname: corp.corpname };
 
     // TODO: 检查数据是否存在
     let entity = await model.findOne({ userid, corpid, origin });
@@ -58,7 +59,7 @@ class LetterGlobalService extends CrudService {
     entity = await model.create({
       userid, type, origin,
       title: job.title || job.subject,
-      corpid, corpname: corp.corpname,
+      ...corp,
       content: resume.content,
       info: resume.info,
       contact: resume.contact,
