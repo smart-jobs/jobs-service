@@ -27,7 +27,7 @@ class CampusTalkService extends CrudService {
     assert(isArray(jobs), 'jobs必须是一个对象数组');
 
     // TODO: 查询企业信息
-    let corp = await this.service.axios.corp.fetch({ id: corpid });
+    let corp = await this.service.axios.corp.fetch({ corpid });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
@@ -48,7 +48,7 @@ class CampusTalkService extends CrudService {
     assert(id, 'id不能为空');
 
     // TODO:检查数据是否存在
-    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corpid }).exec();
+    const entity = await this.model.findOne({ _id: ObjectId(id), corpid }).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }

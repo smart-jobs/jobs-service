@@ -14,13 +14,11 @@ const jobInfoSchema = new Schema({
 
 // 校园宣讲会信息
 const SchemaDefine = {
+  corpid: { type: String, required: false, maxLength: 64 }, // 企业ID，如果非注册企业可为空，注册企业不能为空
+  corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
   status: { type: String, default: '0', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-申请发布；2-审核失败
   subject: { type: String, required: true, maxLength: 128 }, // 标题
   content: { type: String, required: true, maxLength: 10240 }, // 详情
-  corp: {
-    id: String,
-    name: String,
-  },
   address: { type: String, required: true, maxLength: 128, default: '' }, // 宣讲地址
   time: { type: String, required: true, maxLength: 64 }, // 举办时间说明
   contact: { type: String, required: true, maxLength: 64 }, // 招聘联系电话

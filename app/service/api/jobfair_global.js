@@ -26,15 +26,11 @@ class JobinfoGlobalService extends CrudService {
 
     // TODO: 查询所有的招聘会ID
     const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL },
-      { corp: 1, jobs: 1 },
+      { corpid: 1, corpname: 1, jobs: 1 },
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 
     // TODO: 转换输出数据格式
-    return rs.map(p => ({
-      corpid: p.corp.id,
-      corpname: p.corp.name,
-      jobs: p.jobs,
-    }));
+    return rs;
   }
 
   async corp_fetch({ id, fair_id, corpid }) {
@@ -42,7 +38,7 @@ class JobinfoGlobalService extends CrudService {
     if (!id) {
       assert(corpid, '企业ID不能为空');
       assert(fair_id, '招聘会ID不能为空');
-      return await this.mCorp.findOne({ fair_id, 'corp.id': corpid }).exec();
+      return await this.mCorp.findOne({ fair_id, corpid }).exec();
     }
 
     return await this.mCorp.findById(id);
@@ -53,7 +49,7 @@ class JobinfoGlobalService extends CrudService {
     assert(corpid, '企业ID不能为空');
     assert(fair_id, '招聘会ID不能为空');
 
-    const doc = await this.mCorp.findOne({ fair_id, 'corp.id': corpid }).exec();
+    const doc = await this.mCorp.findOne({ fair_id, corpid }).exec();
     if (doc.checkin && doc.checkin.status === CheckinStatus.FINISH) {
       throw new BusinessError(ErrorCode.SERVICE_FAULT, '不能重复签到');
     }
@@ -66,7 +62,7 @@ class JobinfoGlobalService extends CrudService {
     }
     doc.checkin.time = new Date();
     await doc.save();
-    return { corp: doc.corp, checkin: doc.checkin };
+    return { corpid: doc.corpid, corpname: doc.corpname, checkin: doc.checkin };
   }
 
   // 申请招聘会门票
@@ -97,7 +93,7 @@ class JobinfoGlobalService extends CrudService {
     const { xm: name, yxdm } = user;
 
     // TODO: 检查是否已申请
-    let apply = await this.mTicket.findOne({ fair_id, 'user.id': userid }).exec();
+    let apply = await this.mTicket.findOne({ fair_id, userid }).exec();
     if (apply) {
       throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复申请');
     }
@@ -116,7 +112,7 @@ class JobinfoGlobalService extends CrudService {
     }
 
     // TODO:保存数据
-    apply = await this.mTicket.create({ fair_id, origin, type, user: { id: userid, name, yxdm }, verify: { status: TicketStatus.NORMAL } });
+    apply = await this.mTicket.create({ userid, fair_id, origin, type, user: { id: userid, name, yxdm }, verify: { status: TicketStatus.NORMAL } });
 
     return apply;
   }
@@ -127,7 +123,7 @@ class JobinfoGlobalService extends CrudService {
     assert(userid, '用户ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    const rs = await this.mTicket.find({ 'user.id': userid },
+    const rs = await this.mTicket.find({ userid },
       null,
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 

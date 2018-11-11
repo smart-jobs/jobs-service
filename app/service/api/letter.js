@@ -21,7 +21,7 @@ class LetterService extends CrudService {
     assert(status === LetterStatus.ACCEPT || status === LetterStatus.REJECT, 'status无效');
 
     // TODO:检查数据是否存在
-    const entity = await this.model.findOne({ _id: ObjectId(id), 'corp.id': corpid }).exec();
+    const entity = await this.model.findOne({ _id: ObjectId(id), corpid }).exec();
     if (!entity) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }

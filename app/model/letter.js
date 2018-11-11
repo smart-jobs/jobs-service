@@ -14,10 +14,8 @@ const SchemaDefine = {
   status: { type: String, default: '0' }, // 接受: 0-新投递，未接收；1-已接收；2-已回复
   type: { type: String, default: '0' }, // 求职信类型：0-招聘信息；1-招聘会；
   origin: { type: String, require: true }, // 信息来源ID：招聘信息ID、招聘会ID
-  corp: {
-    id: String, // 企业ID
-    name: String, // 企业名称
-  },
+  corpid: { type: String, required: false, maxLength: 64 }, // 企业ID
+  corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
   info: { // 学生基本信息
     xm: String, // 姓名
     xb: String, // 性别
@@ -34,10 +32,10 @@ const SchemaDefine = {
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
 schema.index({ status: 1 });
 schema.index({ userid: 1 });
-schema.index({ 'corp.id': 1 });
-schema.index({ 'corp.id': 1, type: 1 });
-schema.index({ 'corp.id': 1, origin: 1 });
-schema.index({ 'corp.id': 1, userid: 1, origin: 1 });
+schema.index({ corpid: 1 });
+schema.index({ corpid: 1, type: 1 });
+schema.index({ corpid: 1, origin: 1 });
+schema.index({ corpid: 1, userid: 1, origin: 1 });
 schema.plugin(metaPlugin);
 
 module.exports = app => {

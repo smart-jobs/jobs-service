@@ -17,7 +17,7 @@ module.exports = {
       "sort": ["meta.createAt"],
       "desc": true,
       "count": true,
-      "projection": { userid: 1, title: 1, type: 1, origin: 1, corp: 1, meta: 1 },
+      "projection": { userid: 1, title: 1, type: 1, origin: 1, corpid: 1, corpname: 1, meta: 1 },
     },
     "service": "api.letterGlobal.query",
   },
@@ -31,7 +31,7 @@ module.exports = {
   // 企业查询求职信列表
   "list": {
     "parameters": {
-      "query": {"!corpid":"corp.id", "type":"type", "origin":"origin"}
+      "query": {"!corpid":"corpid", "type":"type", "origin":"origin"}
     },
     "service": "query",
     "options": {

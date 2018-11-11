@@ -6,6 +6,7 @@ const Schema = require('mongoose').Schema;
 const metaPlugin = require('naf-framework-mongoose/lib/model/meta-plugin');
 
 const SchemaDefine = {
+  userid: { type: String, required: true, maxLength: 64 }, // 注册用户ID
   fair_id: { type: String, required: true, maxLength: 64 }, // 招聘会ID
   type: { type: String, required: true, maxLength: 64, default: '0' }, // 类型: 0-普通门票、1-临时门票(受限)
   origin: { type: String, required: true, maxLength: 64, default: '0' }, // 用户类型: 0-本校、1-外校
@@ -23,8 +24,8 @@ const SchemaDefine = {
 const schema = new Schema(SchemaDefine);
 schema.index({ fair_id: 1 });
 schema.index({ fair_id: 1, type: 1, origin: 1 }); // 招聘会-门票类型-用户来源
-schema.index({ 'user.id': 1 });
-schema.index({ 'user.id': 1, fair_id: 1 }, { unique: true });
+schema.index({ userid: 1 });
+schema.index({ userid: 1, fair_id: 1 }, { unique: true });
 schema.plugin(metaPlugin);
 
 module.exports = app => {
