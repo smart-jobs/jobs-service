@@ -16,21 +16,21 @@ Accept: application/json
 POST http://localhost:8201/admin/jobfair/create HTTP/1.1
 #POST http://oa.chinahuian.cn/admin/jobs/jobfair/create HTTP/1.1
 Content-Type: application/json
-X-Tenant: 99992
+X-Tenant: 99991
 Accept: application/json
 
 {
   "type": "校园招聘会",
-  "subject": "测试二校信息行业专场招聘会",
-  "content": "<p>测试二校2018年度信息行业专场招聘会</p>",
+  "subject": "2018年冬季招聘会",
+  "content": "<p>测试一校2018年度冬季招聘会</p>",
   "city": {
     "code": "220100",
     "name": "吉林省长春市"
   },
-  "time": "2018年11月1日全天",
+  "time": "08:30——17:00",
   "address": "学校体育馆",
-  "unit": "99992",
-  "date": "2018-11-01"
+  "unit": "99991",
+  "date": "2018-11-15"
 }
 
 ###

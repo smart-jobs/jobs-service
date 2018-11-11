@@ -9,6 +9,7 @@
   "dependencies": {
     "egg": "^2.13.0",
     "egg-scripts": "^2.10.0",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "naf-framework-mongoose": "^0.5.5"
   },
