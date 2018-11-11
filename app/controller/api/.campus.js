@@ -9,7 +9,7 @@ module.exports = {
     "parameters": {
       "query": ["!id", "!corpid"]
     },
-    "requestBody": ["subject", "content", "address", "time", "contact", "email", "jobs"]
+    "requestBody": ["subject", "content", "address", "time", "contact", "email", "jobs", "date"]
   },
   "list": {
     "parameters": {
