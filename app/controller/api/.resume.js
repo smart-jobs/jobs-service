@@ -10,7 +10,7 @@ module.exports = {
       "query": ["!id", "!userid"]
     },
     "requestBody": ["title", "content",
-      "info.crrq", "info.xl", "info.yxmc", "info.zymc",
+      "info.csrq", "info.xl", "info.yxmc", "info.zymc",
       "contact.mobile", "contact.email"]
   },
   "delete": {
