@@ -17,7 +17,7 @@ module.exports = {
       "sort": ["meta.createAt"],
       "desc": true,
       "count": true,
-      "projection": { userid: 1, title: 1, type: 1, origin: 1, corpid: 1, corpname: 1, meta: 1 },
+      "projection": { userid: 1, title: 1, type: 1, origin: 1, corpid: 1, corpname: 1, meta: 1, status: 1 },
     },
     "service": "api.letterGlobal.query",
   },
