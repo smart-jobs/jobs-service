@@ -8,7 +8,7 @@ const metaPlugin = require('naf-framework-mongoose/lib/model/meta-plugin');
 // 职位信息
 const jobSchema = new Schema({
   name: { type: String, required: true, maxLength: 128 }, // 职位名称
-  count: Number, // 招聘人数
+  count: String, // 招聘人数
   requirement: String, // 需求说明
 });
 
