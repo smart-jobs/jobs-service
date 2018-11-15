@@ -14,6 +14,13 @@ const SchemaDefine = {
   title: { type: String, required: true, maxLength: 128 }, // 标题
   content: { type: String, required: true, maxLength: 10240 }, // 详情
   city: CodeNamePair, // 工作城市
+  count: { type: String, maxLength: 64 }, // 需求人数
+  jobdesc: { type: String, maxLength: 200 }, // 职位描述
+  jobcat: CodeNamePair, // 职位类别：
+  nature: CodeNamePair, // 工作性质: 全职、实习、其他
+  salary: CodeNamePair, // 工作待遇
+  xlreqs: CodeNamePair, // 学历要求
+  zyreqs: [ CodeNamePair ], // 专业要求
   date: { type: String, required: false }, // 发布日期，格式：YYYY-MM-DD
   unit: { type: String, required: true }, // 发布单位（学校代码）
   expiredAt: { type: Date }, // 信息失效时间
