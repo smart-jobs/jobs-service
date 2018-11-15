@@ -22,8 +22,8 @@ const SchemaDefine = {
   xlreqs: CodeNamePair, // 学历要求
   zyreqs: { type: String, maxLength: 200 }, // 专业要求
   date: { type: String, required: false }, // 发布日期，格式：YYYY-MM-DD
+  expired: { type: String, required: false }, // 信息失效时间，格式：YYYY-MM-DD
   unit: { type: String, required: true }, // 发布单位（学校代码）
-  expiredAt: { type: Date }, // 信息失效时间
   remark: { type: String, maxLength: 500 } // 备注
 
 };
