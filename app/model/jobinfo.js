@@ -20,7 +20,7 @@ const SchemaDefine = {
   nature: CodeNamePair, // 工作性质: 全职、实习、其他
   salary: CodeNamePair, // 工作待遇
   xlreqs: CodeNamePair, // 学历要求
-  zyreqs: [ CodeNamePair ], // 专业要求
+  zyreqs: { type: String, maxLength: 200 }, // 专业要求
   date: { type: String, required: false }, // 发布日期，格式：YYYY-MM-DD
   unit: { type: String, required: true }, // 发布单位（学校代码）
   expiredAt: { type: Date }, // 信息失效时间

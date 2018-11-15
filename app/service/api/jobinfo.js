@@ -29,7 +29,7 @@ class JobinfoService extends CrudService {
     assert(isNullOrUndefined(nature) || _.isObject(nature), 'nature必须是字典对象');
     assert(isNullOrUndefined(salary) || _.isObject(salary), 'salary必须是字典对象');
     assert(isNullOrUndefined(xlreqs) || _.isObject(xlreqs), 'xlreqs必须是字典对象');
-    assert(isNullOrUndefined(zyreqs) || _.isArray(zyreqs), 'zyreqs必须是字典对象数组');
+    assert(isNullOrUndefined(zyreqs) || _.isString(zyreqs), 'zyreqs必须是字符串');
 
     // TODO: 查询企业信息
     let corp = await this.service.axios.corp.fetch({ corpid });
@@ -60,7 +60,7 @@ class JobinfoService extends CrudService {
     assert(isNullOrUndefined(nature) || _.isObject(nature), 'nature必须是字典对象');
     assert(isNullOrUndefined(salary) || _.isObject(salary), 'salary必须是字典对象');
     assert(isNullOrUndefined(xlreqs) || _.isObject(xlreqs), 'xlreqs必须是字典对象');
-    assert(isNullOrUndefined(zyreqs) || _.isArray(zyreqs), 'zyreqs必须是字典对象数组');
+    assert(isNullOrUndefined(zyreqs) || _.isString(zyreqs), 'zyreqs必须是字符串');
 
     // TODO:检查数据是否存在
     const entity = await this.model.findOne({ _id: ObjectId(id), corpid }).exec();
