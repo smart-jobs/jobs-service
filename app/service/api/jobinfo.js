@@ -23,13 +23,17 @@ class JobinfoService extends CrudService {
     assert(title, 'title不能为空');
     assert(content, 'content不能为空');
     assert(city && _.isObject(city), 'city必须是字典对象');
-    assert(isNullOrUndefined(expiredAt) || _.isDate(expiredAt), 'expiredAt必须是Date对象');
+    // assert(isNullOrUndefined(expiredAt) || _.isDate(expiredAt), 'expiredAt必须是Date对象');
     assert(isNullOrUndefined(count) || _.isString(count), 'count必须是字符串');
     assert(isNullOrUndefined(jobcat) || _.isObject(jobcat), 'jobcat必须是字典对象');
     assert(isNullOrUndefined(nature) || _.isObject(nature), 'nature必须是字典对象');
     assert(isNullOrUndefined(salary) || _.isObject(salary), 'salary必须是字典对象');
     assert(isNullOrUndefined(xlreqs) || _.isObject(xlreqs), 'xlreqs必须是字典对象');
     assert(isNullOrUndefined(zyreqs) || _.isString(zyreqs), 'zyreqs必须是字符串');
+
+    if (_.isString(expiredAt)) {
+      expiredAt = new Date(expiredAt);
+    }
 
     // TODO: 查询企业信息
     let corp = await this.service.axios.corp.fetch({ corpid });
@@ -54,13 +58,17 @@ class JobinfoService extends CrudService {
     // 检查数据
     assert(id, 'id不能为空');
     assert(isNullOrUndefined(city) || _.isObject(city), 'city必须是字典对象');
-    assert(isNullOrUndefined(expiredAt) || _.isDate(expiredAt), 'expiredAt必须是Date对象');
+    // assert(isNullOrUndefined(expiredAt) || _.isDate(expiredAt), 'expiredAt必须是Date对象');
     assert(isNullOrUndefined(count) || _.isString(count), 'count必须是字符串');
     assert(isNullOrUndefined(jobcat) || _.isObject(jobcat), 'jobcat必须是字典对象');
     assert(isNullOrUndefined(nature) || _.isObject(nature), 'nature必须是字典对象');
     assert(isNullOrUndefined(salary) || _.isObject(salary), 'salary必须是字典对象');
     assert(isNullOrUndefined(xlreqs) || _.isObject(xlreqs), 'xlreqs必须是字典对象');
     assert(isNullOrUndefined(zyreqs) || _.isString(zyreqs), 'zyreqs必须是字符串');
+
+    if (_.isString(expiredAt)) {
+      expiredAt = new Date(expiredAt);
+    }
 
     // TODO:检查数据是否存在
     const entity = await this.model.findOne({ _id: ObjectId(id), corpid }).exec();
