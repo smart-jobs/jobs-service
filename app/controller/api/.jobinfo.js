@@ -3,7 +3,7 @@ module.exports = {
     "parameters": {
       "query": ["!corpid"]
     },
-    "requestBody": ["title", "content", "city", "expiredAt", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs"]
+    "requestBody": ["!title", "content", "!city", "expiredAt", "!count", "!jobdesc", "!jobcat", "!nature", "salary", "!xlreqs", "!zyreqs"]
   },
   "update": {
     "parameters": {
@@ -70,6 +70,9 @@ module.exports = {
       "query": ["!id"]
     },
     "service": "api.jobinfoGlobal.fetch",
+    "options": {
+      "projection": "+content"
+    },
   },
   // 【全站】查询信息列表
   "query_g": {

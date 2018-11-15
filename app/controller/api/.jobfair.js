@@ -35,6 +35,9 @@ module.exports = {
       "query": ["!id"]
     },
     "service": "api.jobfairGlobal.fetch",
+    "options": {
+      "projection": "+content"
+    },
   },
   // 查询信息列表, 【全站】
   "query_g": {

@@ -12,7 +12,7 @@ const SchemaDefine = {
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
   status: { type: String, default: '1', maxLength: 64 }, // 状态: 0-正常(审核通过)；1-申请发布；2-审核失败
   title: { type: String, required: true, maxLength: 128 }, // 标题
-  content: { type: String, required: true, maxLength: 10240 }, // 详情
+  content: { type: String, required: true, maxLength: 10240, select: false }, // 详情
   city: CodeNamePair, // 工作城市
   count: { type: String, maxLength: 64 }, // 需求人数
   jobdesc: { type: String, maxLength: 200 }, // 职位描述

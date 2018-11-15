@@ -16,7 +16,7 @@ const LimitSchema = new Schema({
 const SchemaDefine = {
   status: { type: String, default: '0', maxLength: 64 }, // 状态: 0-开放申请；1-关闭申请；2-进行中；
   subject: { type: String, required: true, maxLength: 128 }, // 标题
-  content: { type: String, required: true, maxLength: 102400 }, // 详情
+  content: { type: String, required: true, maxLength: 102400, select: false }, // 详情
   type: { type: String, required: true, maxLength: 64 }, // 招聘会类型
   city: CodeNamePair, // 举办城市
   address: { type: String, required: true, maxLength: 128 }, // 举办地址
