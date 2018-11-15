@@ -22,7 +22,7 @@ class JobinfoService extends CrudService {
     // 检查数据
     assert(title, 'title不能为空');
     assert(content, 'content不能为空');
-    assert(city, 'city不能为空');
+    assert(city && _.isObject(city), 'city必须是字典对象');
     assert(isNullOrUndefined(expiredAt) || _.isDate(expiredAt), 'expiredAt必须是Date对象');
     assert(isNullOrUndefined(count) || _.isString(count), 'count必须是字符串');
     assert(isNullOrUndefined(jobcat) || _.isObject(jobcat), 'jobcat必须是字典对象');
