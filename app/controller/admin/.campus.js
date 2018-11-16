@@ -18,7 +18,7 @@ module.exports = {
     "service": "query",
     "options": {
       "query": ["skip", "limit"],
-      "sort": ["meta.createAt"],
+      "sort": ["meta.createdAt"],
       "desc": true,
       "count": true,
       "projection": {

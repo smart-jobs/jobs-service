@@ -14,7 +14,7 @@ module.exports = {
     },
     "options": {
       "query": ["skip", "limit"],
-      "sort": ["meta.createAt"],
+      "sort": ["meta.createdAt"],
       "desc": true,
       "count": true,
       "projection": { userid: 1, title: 1, type: 1, origin: 1, corpid: 1, corpname: 1, meta: 1, status: 1 },
@@ -36,7 +36,7 @@ module.exports = {
     "service": "query",
     "options": {
       "query": ["skip", "limit"],
-      "sort": ["meta.createAt"],
+      "sort": ["meta.createdAt"],
       "desc": true,
       "count": true,
     }
