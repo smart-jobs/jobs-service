@@ -17,6 +17,7 @@ const SchemaDefine = {
   corpid: { type: String, required: false, maxLength: 64 }, // 企业ID，如果非注册企业可为空，注册企业不能为空
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
   fair_id: { type: String, required: true, maxLength: 64 }, // 招聘会ID
+  booth: { type: String, required: false, maxLength: 64 }, // 展位号
   // 职位列表
   jobs: {
     type: [ jobSchema ],
@@ -30,6 +31,7 @@ const SchemaDefine = {
     time: Date, // 扫码时间
     device: String, // 扫码设备标识（小程序用户的openid）,
   },
+  remark: { type: String, maxLength: 500 } // 备注
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
 schema.index({ fair_id: 1 });

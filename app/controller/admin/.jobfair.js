@@ -22,5 +22,12 @@ module.exports = {
   },
   "fetch": {
     "query": ["!id"]
-  }
+  },
+  // 审核参展企业信息
+  "corp_review": {
+    "parameters": {
+      "query": ["!fair_id", "!corpid"] // 招聘会ID, 企业ID
+    },
+    "requestBody": ["!status", "booth", "remark"] // 审核状态，展位编号
+  },
 };
