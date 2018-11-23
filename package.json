@@ -11,7 +11,7 @@
     "egg-scripts": "^2.10.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "naf-framework-mongoose": "^0.5.14"
+    "naf-framework-mongoose": "^0.5.16"
   },
   "devDependencies": {
     "autod": "^3.0.1",
