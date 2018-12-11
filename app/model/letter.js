@@ -29,7 +29,7 @@ const SchemaDefine = {
     email: String, // 电子邮件
   },
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });
 schema.index({ status: 1 });
 schema.index({ userid: 1 });
 schema.index({ corpid: 1 });

@@ -33,7 +33,7 @@ const SchemaDefine = {
   },
   remark: { type: String, maxLength: 500 } // 备注
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });
 schema.index({ fair_id: 1 });
 schema.index({ fair_id: 1, status: 1 });
 schema.index({ corpid: 1 });

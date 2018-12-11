@@ -32,7 +32,7 @@ const SchemaDefine = {
     select: false,
   },
 };
-const schema = new Schema(SchemaDefine, { 'multi-tenancy': true });
+const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });
 schema.index({ status: 1 });
 schema.plugin(metaPlugin);
 

@@ -21,7 +21,7 @@ const SchemaDefine = {
     device: String, // 扫码设备标识（小程序用户的openid）,
   },
 };
-const schema = new Schema(SchemaDefine);
+const schema = new Schema(SchemaDefine, { toJSON: { virtuals: true } });
 schema.index({ fair_id: 1 });
 schema.index({ fair_id: 1, type: 1, origin: 1 }); // 招聘会-门票类型-用户来源
 schema.index({ userid: 1 });
