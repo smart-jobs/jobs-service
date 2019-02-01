@@ -1,8 +1,8 @@
 
 ###
 # 查询所有招聘会信息
-GET http://localhost:7001/api/jobfair/query?skip=0&limit=10 HTTP/1.1
-#GET http://oa.chinahuian.cn/jobs/jobfair/query?skip=0&limit=10 HTTP/1.1
+#GET http://localhost:7001/api/jobfair/query?skip=0&limit=10 HTTP/1.1
+GET http://99991.smart.chinahuian.cn/www/api/jobs/jobfair/query?skip=0&limit=10 HTTP/1.1
 Accept: application/json
 
 ###
