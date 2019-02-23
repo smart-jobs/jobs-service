@@ -129,7 +129,7 @@ class JobinfoGlobalService extends CrudService {
 
     // TODO: 查询招聘会信息
     const ids = rs.map(p => ObjectId(p.fair_id));
-    let jobfairs = await this.model.find({ _id: { $in: ids } }, { subject: 1, unit: 1, date: 1 }).exec();
+    let jobfairs = await this.model.find({ _id: { $in: ids } }, { address: 1, subject: 1, unit: 1, date: 1 }).exec();
     jobfairs = jobfairs.reduce((p, c) => {
       p[c.id] = _.omit(c.toObject(), [ '_id' ]);
       return p;

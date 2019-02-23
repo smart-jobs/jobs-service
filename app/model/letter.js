@@ -11,7 +11,7 @@ const SchemaDefine = {
   title: { type: String, required: true, maxLength: 128 }, // 职位标题
   content: { type: String, required: true, maxLength: 102400, select: false }, // 简历内容
   reply: { type: String, required: false, maxLength: 102400, select: false }, // 回复内容
-  status: { type: String, default: '0' }, // 接受: 0-新投递，未接收；1-已接收；2-已回复
+  status: { type: String, default: '0' }, // 接受: 0-新投递，未接收；1-已接收；2-已回绝
   type: { type: String, default: '0' }, // 求职信类型：0-招聘信息；1-招聘会；
   origin: { type: String, require: true }, // 信息来源ID：招聘信息ID、招聘会ID
   corpid: { type: String, required: false, maxLength: 64 }, // 企业ID
