@@ -23,6 +23,7 @@ module.exports = app => {
   router.get('/api/jobfair/query_g', controller.api.jobfair.query_g);// 【全站】查询已发布的信息数据列表
   router.get('/api/jobfair/simple_g', controller.api.jobfair.simple_g);// 【全站】查询已发布的信息概要列表
   router.get('/api/jobfair/today', controller.api.jobfair.today);// 【全站】获取当前招聘会列表
+  router.get('/api/jobfair/calendar', controller.api.jobfair.calendar);// 【全站】招聘会日历-获取制定月份列表
   router.get('/api/jobfair/query', controller.api.jobfair.query);// 查询已发布的信息数据列表
   router.get('/api/jobfair/simple', controller.api.jobfair.simple);// 查询已发布的信息概要列表
   router.get('/api/jobfair/fetch', controller.api.jobfair.fetch);// 【全站】获取信息详情
@@ -48,6 +49,7 @@ module.exports = app => {
   router.get('/api/campus/fetch', controller.api.campus.fetch);
   router.post('/api/campus/create', controller.api.campus.create);
   router.post('/api/campus/update', controller.api.campus.update);
+  router.get('/api/campus/calendar', controller.api.campus.calendar);// 【分站】宣讲会日历-获取制定月份列表
 
   // 学生简历
   router.post('/api/resume/create', controller.api.resume.create); // 创建新的简历模板
