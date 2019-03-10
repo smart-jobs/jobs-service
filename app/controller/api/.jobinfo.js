@@ -110,6 +110,7 @@ module.exports = {
       "projection": {
         "title": 1,
         "corpname": 1,
+        "unit": 1,
         "meta.createdAt": 1
       }
     }
