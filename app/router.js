@@ -80,6 +80,8 @@ module.exports = app => {
   router.post('/admin/jobfair/update', controller.admin.jobfair.update);// 修改招聘会信息
   // router.post('/admin/jobfair/delete', controller.admin.jobfair.delete);// 删除招聘会信息
   // router.post('/admin/jobfair/review', controller.admin.jobfair.review);// 审核企业申请
+  router.get('/admin/jobfair/corp/count', controller.admin.jobfair.corp_count);// 统计参会企业情况
+  router.get('/admin/jobfair/ticket/count', controller.admin.jobfair.ticket_count);// 统计入场券情况
   // 校园宣讲会
   router.get('/admin/campus/query', controller.admin.campus.query);// 查询宣讲会信息
   router.get('/admin/campus/fetch', controller.admin.campus.fetch);// 获得宣讲会数据

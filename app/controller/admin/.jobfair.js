@@ -35,4 +35,17 @@ module.exports = {
     },
     "requestBody": ["!status", "booth", "remark"] // 审核状态，展位编号
   },
+  // 统计招聘会的参展企业情况
+  "corp_count": {
+    "parameters": {
+      "query": ["fair_id"] // 招聘会ID
+    },
+  },
+  // 统计招聘会的入场券情况
+  "ticket_count": {
+    "parameters": {
+      "query": ["fair_id"] // 招聘会ID
+    },
+  },
+
 };

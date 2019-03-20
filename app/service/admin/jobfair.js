@@ -4,12 +4,14 @@ const assert = require('assert');
 const _ = require('lodash');
 const { CrudService } = require('naf-framework-mongoose/lib/service');
 const { isNullOrUndefined } = require('naf-core').Util;
-const { JobfairStatus } = require('../../util/constants');
+const { JobfairStatus, JobfairCorpStatus, CheckinStatus, TicketStatus } = require('../../util/constants');
 
 class JobfairService extends CrudService {
   constructor(ctx) {
     super(ctx);
     this.model = this.ctx.model.Jobfair;
+    this.mCorp = this.app.model.JobfairCorp;
+    this.mTicket = this.app.model.JobfairTicket;
   }
 
   async create({ type, subject, content, city, address, date, time }) {
@@ -32,6 +34,30 @@ class JobfairService extends CrudService {
     return res;
   }
 
+  // 统计招聘会参会企业情况
+  async corp_count({ fair_id }) {
+    assert(fair_id, '招聘会ID不能为空');
+
+    // TODO: 统计数据
+    const total = await this.mCorp.count({ fair_id }).exec();
+    const approved = await this.mCorp.count({ fair_id, status: JobfairCorpStatus.NORMAL }).exec();
+    const checked = await this.mCorp.count({ fair_id, 'checkin.status': CheckinStatus.FINISH }).exec();
+
+    // TODO: 转换输出数据格式
+    return { total, approved, checked };
+  }
+
+  // 统计招聘会入场券情况
+  async ticket_count({ fair_id }) {
+    assert(fair_id, '招聘会ID不能为空');
+
+    // TODO: 统计数据
+    const total = await this.mTicket.count({ fair_id }).exec();
+    const verified = await this.mTicket.count({ fair_id, 'verify.status': TicketStatus.USED }).exec();
+
+    // TODO: 转换输出数据格式
+    return { total, verified };
+  }
 }
 
 module.exports = JobfairService;
