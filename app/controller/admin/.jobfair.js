@@ -4,7 +4,7 @@ module.exports = {
   },
   "update": {
     "query": ["!id"],
-    "requestBody": ["type", "subject", "content", "city", "address", "time", "date"]
+    "requestBody": ["type", "subject", "content", "city", "address", "time", "date", "status"]
   },
   "query": {
     "parameters": {
