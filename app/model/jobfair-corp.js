@@ -31,6 +31,7 @@ const SchemaDefine = {
     time: Date, // 扫码时间
     device: String, // 扫码设备标识（小程序用户的openid）,
   },
+  online: { type: Number, default: 1 }, // 是否接收在线简历投递
   remark: { type: String, maxLength: 500 } // 备注
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });

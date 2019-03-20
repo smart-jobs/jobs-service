@@ -24,6 +24,7 @@ const SchemaDefine = {
   date: { type: String, required: false }, // 发布日期，格式：YYYY-MM-DD
   expired: { type: String, required: false }, // 信息失效时间，格式：YYYY-MM-DD
   unit: { type: String, required: true }, // 发布单位（学校代码）
+  online: { type: Number, default: 1 }, // 是否接收在线简历投递
   remark: { type: String, maxLength: 500 } // 备注
 
 };

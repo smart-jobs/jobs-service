@@ -1,10 +1,10 @@
 module.exports = {
   "create": {
-    "requestBody": ["title", "content", "city"]
+    "requestBody": ["corpid", "!corpname", "!title", "content", "city", "expired", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs", "online"]
   },
   "update": {
     "query": ["!id"],
-    "requestBody": ["title", "content", "city"]
+    "requestBody": ["corpname", "title", "content", "city", "expired", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs", "online"]
   },
   "delete": {
     "query": ["!id"]

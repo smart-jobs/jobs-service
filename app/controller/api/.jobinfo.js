@@ -3,13 +3,13 @@ module.exports = {
     "parameters": {
       "query": ["!corpid"]
     },
-    "requestBody": ["!title", "content", "!city", "expired", "!count", "!jobdesc", "!jobcat", "!nature", "salary", "!xlreqs", "!zyreqs"]
+    "requestBody": ["!title", "content", "!city", "expired", "!count", "!jobdesc", "!jobcat", "!nature", "salary", "!xlreqs", "!zyreqs", "online"]
   },
   "update": {
     "parameters": {
       "query": ["!id", "!corpid"]
     },
-    "requestBody": ["title", "content", "city", "expired", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs"]
+    "requestBody": ["title", "content", "city", "expired", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs", "online"]
   },
   "list": {
     "parameters": {

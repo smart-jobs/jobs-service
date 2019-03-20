@@ -35,6 +35,37 @@ class CampusService extends CrudService {
     return entity;
   }
 
+  async create({ corpid, corpname, subject, content, address, date, time, contact, email, jobs }) {
+    // TODO: coreid和corpname应该从token中获取，此处暂时由参数传入
+    assert(corpname, '宣讲企业不能为空');
+    // 检查数据
+    assert(subject, 'subject不能为空');
+    assert(content, 'content不能为空');
+    assert(time, 'time不能为空');
+    assert(contact, 'contact不能为空');
+    assert(email, 'email不能为空');
+    assert(date, 'date不能为空');
+    assert(_.isArray(jobs), 'jobs必须是一个对象数组');
+
+    // TODO: 查询企业信息
+    if (corpid) {
+      const corp = await this.service.axios.corp.fetch({ corpid });
+      if (!corp) {
+        throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
+      }
+      corpname = corp.name;
+    }
+
+    // TODO:保存数据
+    const data = {
+      subject, content, corpid, corpname, status: CampusTalkStatus.PENDING,
+      address, time, contact, email, jobs, date, unit: this.tenant
+    };
+
+    const res = await this.model.create(data);
+    return res;
+  }
+
 }
 
 module.exports = CampusService;
