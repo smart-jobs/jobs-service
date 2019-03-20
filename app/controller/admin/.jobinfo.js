@@ -31,6 +31,11 @@ module.exports = {
     }
   },
   "fetch": {
-    "query": ["!id"]
+    "parameters": {
+      "query": ["!id"]
+    },
+    "options": {
+      "projection": "+content"
+    },
   }
 };

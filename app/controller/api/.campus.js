@@ -70,6 +70,9 @@ module.exports = {
       "query": ["!id"],
     },
     "service": "api.campusGlobal.fetch",
+    "options": {
+      "projection": "+content"
+    },
   },
   // 【全站】查询信息详情
   "query_g": {

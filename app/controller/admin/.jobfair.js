@@ -21,7 +21,12 @@ module.exports = {
     }
   },
   "fetch": {
-    "query": ["!id"]
+    "parameters": {
+      "query": ["!id"]
+    },
+    "options": {
+      "projection": "+content"
+    },
   },
   // 审核参展企业信息
   "corp_review": {
