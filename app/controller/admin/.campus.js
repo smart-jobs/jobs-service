@@ -1,7 +1,7 @@
 
 module.exports = {
   "create": {
-    "requestBody": ["corpid", "corpname", "subject", "content", "address", "date", "time", "contact", "email", "jobs", "city"]
+    "requestBody": ["corpid", "corpname", "subject", "content", "address", "date", "time", "contact", "email", "jobs"]
   },
   "review": {
     "query": ["!id"],
@@ -9,7 +9,7 @@ module.exports = {
   },
   "update": {
     "query": ["!id"],
-    "requestBody": ["corpname", "subject", "content", "address", "date", "time", "contact", "email", "jobs", "city"]
+    "requestBody": ["corpname", "subject", "content", "address", "date", "time", "contact", "email", "jobs"]
   },
   "query": {
     "parameters": {
