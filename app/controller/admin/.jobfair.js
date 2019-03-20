@@ -1,10 +1,10 @@
 module.exports = {
   "create": {
-    "requestBody": ["type", "subject", "content", "city", "address", "time", "date", "unit"]
+    "requestBody": ["type", "!subject", "!content", "city", "address", "time", "!date", "!unit"]
   },
   "update": {
     "query": ["!id"],
-    "requestBody": ["type", "subject", "content", "city", "address", "time", "date", "unit"]
+    "requestBody": ["type", "subject", "content", "city", "address", "time", "date"]
   },
   "query": {
     "parameters": {
