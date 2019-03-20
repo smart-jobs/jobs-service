@@ -35,6 +35,21 @@ module.exports = {
     },
     "requestBody": ["!status", "booth", "remark"] // 审核状态，展位编号
   },
+  // 获得参展企业信息
+  "corp_fetch": {
+    "parameters": {
+      "query": ["!corpid", "!fair_id"] // 招聘会ID+企业ID
+    },
+  },
+  // 获得招聘会的参展企业列表
+  "corp_list": {
+    "parameters": {
+      "query": ["fair_id"] // 招聘会ID
+    },
+    "options": {
+      "query": ["skip", "limit"]
+    },
+  },
   // 统计招聘会的参展企业情况
   "corp_count": {
     "parameters": {
