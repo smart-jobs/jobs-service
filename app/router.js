@@ -71,6 +71,7 @@ module.exports = app => {
   router.post('/admin/jobinfo/update', controller.admin.jobinfo.update);// 修改招聘信息
   router.post('/admin/jobinfo/review', controller.admin.jobinfo.review);// 管理员审核发布招聘信息
   router.post('/admin/jobinfo/delete', controller.admin.jobinfo.delete);// 删除招聘信息
+  router.post('/admin/jobinfo/create', controller.admin.jobinfo.create);// 添加招聘信息
 
   // 校园招聘会
   router.get('/admin/jobfair/query', controller.admin.jobfair.query);// 查询招聘会信息
@@ -84,4 +85,5 @@ module.exports = app => {
   router.get('/admin/campus/fetch', controller.admin.campus.fetch);// 获得宣讲会数据
   router.post('/admin/campus/update', controller.admin.campus.update);// 修改宣讲会信息
   router.post('/admin/campus/review', controller.admin.campus.review);// 审核企业申请
+  router.post('/admin/campus/create', controller.admin.campus.create);// 添加宣讲会信息
 };
