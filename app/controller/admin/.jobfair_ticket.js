@@ -1,7 +1,7 @@
 module.exports = {
   "query": {
     "parameters": {
-      "query": ["!fair_id", "name", "status"],
+      "query": ["!fair_id", "user.name", "user.yxdm", "status", "type", "origin", "verify.status"],
     },
     "options": {
       "query": ["skip", "limit"],
