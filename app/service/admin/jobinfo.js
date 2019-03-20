@@ -72,8 +72,9 @@ class JobinfoService extends CrudService {
     }
     // TODO:保存数据
     const res = await this.model.create({
-      title, content, city, corpid, corpname, status: JobinfoStatus.PENDING, unit: this.tenant,
-      expired, count, jobdesc, jobcat, nature, salary, xlreqs, zyreqs
+      title, content, city, corpid, corpname,
+      expired, count, jobdesc, jobcat, nature, salary, xlreqs, zyreqs,
+      status: JobinfoStatus.NORMAL, unit: this.tenant,
     });
     return res;
   }
