@@ -25,7 +25,7 @@ const SchemaDefine = {
   unit: { type: String, required: true }, // 举办单位（学校代码）
   limit: { // 招聘会限制信息
     type: LimitSchema,
-    select: false,
+    select: true,
   },
   secret: { // 验证口令
     type: String,
