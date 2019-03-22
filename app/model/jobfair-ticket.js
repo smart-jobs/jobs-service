@@ -14,6 +14,7 @@ const SchemaDefine = {
     id: String, // 注册用户ID
     name: String, // 用户姓名
     yxdm: String, // 所在院校代码
+    yxmc: String, // 所在院校名称
   },
   verify: { // 门票验证记录
     status: { type: String, default: '0' }, // 验证状态: 0-未用、1-已用
