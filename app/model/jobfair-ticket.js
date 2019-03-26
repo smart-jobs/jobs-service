@@ -13,8 +13,14 @@ const SchemaDefine = {
   user: {
     id: String, // 注册用户ID
     name: String, // 用户姓名
+    xm: String, // 用户姓名
+    xb: String, // 用户性别
     yxdm: String, // 所在院校代码
     yxmc: String, // 所在院校名称
+    zydm: String, // 专业代码
+    zymc: String, // 专业名称
+    xldm: String, // 学历代码
+    xl: String, // 学历
   },
   verify: { // 门票验证记录
     status: { type: String, default: '0' }, // 验证状态: 0-未用、1-已用

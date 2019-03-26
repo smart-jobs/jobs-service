@@ -90,7 +90,7 @@ class JobinfoGlobalService extends CrudService {
       throw new BusinessError(ErrorCode.DATA_INVALID, '招聘会已结束');
     }
 
-    const { xm: name, yxdm, yxmc } = user;
+    const { xm, xb, yxdm, yxmc, zydm, zymc, xldm, xl } = user;
 
     // TODO: 检查是否已申请
     let apply = await this.mTicket.findOne({ fair_id, userid }).exec();
@@ -112,7 +112,11 @@ class JobinfoGlobalService extends CrudService {
     }
 
     // TODO:保存数据
-    apply = await this.mTicket.create({ userid, fair_id, origin, type, user: { id: userid, name, yxdm, yxmc }, verify: { status: TicketStatus.NORMAL } });
+    apply = await this.mTicket.create({
+      userid, fair_id, origin, type,
+      user: { id: userid, name: xm, xm, xb, yxdm, yxmc, zydm, zymc, xldm, xl },
+      verify: { status: TicketStatus.NORMAL }
+    });
 
     return apply;
   }
