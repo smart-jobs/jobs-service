@@ -38,10 +38,10 @@ class JobinfoGlobalService extends CrudService {
     if (!id) {
       assert(corpid, '企业ID不能为空');
       assert(fair_id, '招聘会ID不能为空');
-      return await this.mCorp.findOne({ fair_id, corpid }).exec();
+      return await this.mCorp.findOne({ fair_id, corpid }, '+description').exec();
     }
 
-    return await this.mCorp.findById(id);
+    return await this.mCorp.findById(id, '+description');
   }
 
 

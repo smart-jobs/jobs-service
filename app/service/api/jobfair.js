@@ -28,11 +28,11 @@ class JobinfoService extends CrudService {
     assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询企业信息
-    const corp = await this.service.axios.corp.fetch({ corpid });
+    const corp = await this.service.axios.corp.fetch({ corpid }, '+description');
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
-    const corpname = corp.corpname;
+    const { corpname, description } = corp;
 
     // TODO:检查数据是否存在
     const doc = await this.model.findById(ObjectId(fair_id)).exec();
@@ -51,7 +51,7 @@ class JobinfoService extends CrudService {
     }
 
     // TODO:保存数据
-    apply = await this.mCorp.create({ fair_id, corpid, corpname, jobs, status: JobfairCorpStatus.PENDING });
+    apply = await this.mCorp.create({ fair_id, corpid, corpname, description, jobs, status: JobfairCorpStatus.PENDING });
 
     return apply;
   }

@@ -16,6 +16,7 @@ const jobSchema = new Schema({
 const SchemaDefine = {
   corpid: { type: String, required: false, maxLength: 64 }, // 企业ID，如果非注册企业可为空，注册企业不能为空
   corpname: { type: String, required: true, maxLength: 128 }, // 企业名称
+  description: { type: String, maxLength: 10240, select: false }, // 企业描述详情
   fair_id: { type: String, required: true, maxLength: 64 }, // 招聘会ID
   booth: { type: String, required: false, maxLength: 64 }, // 展位号
   // 职位列表

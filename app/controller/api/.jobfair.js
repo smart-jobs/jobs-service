@@ -109,6 +109,12 @@ module.exports = {
     },
     "service": "api.jobfairGlobal.corp_fetch",
   },
+  "corp_fetch2": {
+    "parameters": {
+      "query": ["!id"] // 招聘会参展企业记录ID
+    },
+    "service": "api.jobfairGlobal.corp_fetch",
+  },
   // 【全站】获得招聘会的参展企业列表
   "corp_list": {
     "parameters": {
