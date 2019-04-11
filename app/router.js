@@ -87,6 +87,7 @@ module.exports = app => {
   router.get('/admin/jobfair/corp/query', controller.admin.jobfairCorp.query);// 查询参会企业列表
   router.post('/admin/jobfair/corp/review', controller.admin.jobfairCorp.review);// 审核参会企业
   router.get('/admin/jobfair/ticket/query', controller.admin.jobfairTicket.query);// 查询入场券情况
+  router.get('/admin/jobfair/corp/export', controller.admin.jobfairCorp.export);// 导出参会企业
   // 校园宣讲会
   router.get('/admin/campus/query', controller.admin.campus.query);// 查询宣讲会信息
   router.get('/admin/campus/fetch', controller.admin.campus.fetch);// 获得宣讲会数据

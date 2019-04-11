@@ -33,6 +33,7 @@ const SchemaDefine = {
     device: String, // 扫码设备标识（小程序用户的openid）,
   },
   online: { type: Number, default: 1 }, // 是否接收在线简历投递
+  external: { type: Number, default: 0 }, // 是否外部信息: 0-企业申请、1-系统发布
   remark: { type: String, maxLength: 500 } // 备注
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });

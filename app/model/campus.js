@@ -26,6 +26,7 @@ const SchemaDefine = {
   jobs: [ jobInfoSchema ], // 职位列表
   date: { type: String, required: true }, // 举办日期，格式：YYYY-MM-DD
   unit: { type: String, required: true }, // 举办单位（学校代码）
+  external: { type: Number, default: 0 }, // 是否外部信息: 0-企业申请、1-系统发布
   remark: { type: String, maxLength: 500 } // 备注
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });

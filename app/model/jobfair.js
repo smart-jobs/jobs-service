@@ -31,6 +31,7 @@ const SchemaDefine = {
     type: String,
     select: false,
   },
+  external: { type: Number, default: 0 }, // 是否外部信息: 0-企业申请、1-系统发布
 };
 const schema = new Schema(SchemaDefine, { 'multi-tenancy': true, toJSON: { virtuals: true } });
 schema.index({ status: 1 });
