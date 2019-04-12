@@ -17,7 +17,7 @@ module.exports = {
   },
   "query": {
     "parameters": {
-      "query": ["status", "corpname"]
+      "query": ["status", "corpname", "external"]
     },
     "service": "query",
     "options": {

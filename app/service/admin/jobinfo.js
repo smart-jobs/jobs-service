@@ -74,7 +74,7 @@ class JobinfoService extends CrudService {
     const res = await this.model.create({
       title, content, city, corpid, corpname,
       expired, count, jobdesc, jobcat, nature, salary, xlreqs, zyreqs,
-      status: JobinfoStatus.NORMAL, unit: this.tenant,
+      status: JobinfoStatus.NORMAL, unit: this.tenant, external: 1, online: 0,
     });
     return res;
   }

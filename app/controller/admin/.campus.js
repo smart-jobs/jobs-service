@@ -1,37 +1,57 @@
-
 module.exports = {
-  "create": {
-    "requestBody": ["corpid", "corpname", "subject", "content", "address", "date", "time", "contact", "email", "jobs"]
+  create: {
+    requestBody: [
+      'corpid',
+      'corpname',
+      'subject',
+      'content',
+      'address',
+      'date',
+      'time',
+      'contact',
+      'email',
+      'jobs'
+    ]
   },
-  "review": {
-    "query": ["!id"],
-    "requestBody": ["!status"]
+  review: {
+    query: ['!id'],
+    requestBody: ['!status']
   },
-  "update": {
-    "query": ["!id"],
-    "requestBody": ["corpname", "subject", "content", "address", "date", "time", "contact", "email", "jobs"]
+  update: {
+    query: ['!id'],
+    requestBody: [
+      'corpname',
+      'subject',
+      'content',
+      'address',
+      'date',
+      'time',
+      'contact',
+      'email',
+      'jobs'
+    ]
   },
-  "query": {
-    "parameters": {
-      "query": ["status", "corpname"],
+  query: {
+    parameters: {
+      query: ['status', 'corpname', 'external']
     },
-    "service": "query",
-    "options": {
-      "query": ["skip", "limit"],
-      "sort": ["meta.createdAt"],
-      "desc": true,
-      "count": true,
-      "projection": {
-        "content": 0
+    service: 'query',
+    options: {
+      query: ['skip', 'limit'],
+      sort: ['meta.createdAt'],
+      desc: true,
+      count: true,
+      projection: {
+        content: 0
       }
     }
   },
-  "fetch": {
-    "parameters": {
-      "query": ["!id"]
+  fetch: {
+    parameters: {
+      query: ['!id']
     },
-    "options": {
-      "projection": "+content"
-    },
+    options: {
+      projection: '+content'
+    }
   }
 };

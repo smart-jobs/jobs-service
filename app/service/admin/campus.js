@@ -59,7 +59,7 @@ class CampusService extends CrudService {
     // TODO:保存数据
     const data = {
       subject, content, corpid, corpname, status: CampusTalkStatus.NORMAL,
-      address, time, contact, email, jobs, date, unit: this.tenant
+      address, time, contact, email, jobs, date, unit: this.tenant, external: 1,
     };
 
     const res = await this.model.create(data);
