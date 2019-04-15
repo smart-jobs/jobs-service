@@ -89,9 +89,12 @@ module.exports = app => {
   router.get('/admin/jobfair/corp/query', controller.admin.jobfairCorp.query); // 查询参会企业列表
   router.post('/admin/jobfair/corp/review', controller.admin.jobfairCorp.review); // 审核参会企业
   router.get('/admin/jobfair/corp/export', controller.admin.jobfairCorp.export); // 导出参会企业
-  router.post('/admin/jobfair/corp/job/add', controller.admin.jobfairCorp.corp_job_add); // 添加企业招聘职位信息
-  router.post('/admin/jobfair/corp/job/update', controller.admin.jobfairCorp.corp_job_update); // 修改企业招聘职位信息
-  router.post('/admin/jobfair/corp/job/delete', controller.admin.jobfairCorp.corp_job_delete); // 删除企业招聘职位信息
+  router.post('/admin/jobfair/corp/create', controller.admin.jobfairCorp.create); // 添加外部企业信息
+  router.post('/admin/jobfair/corp/update', controller.admin.jobfairCorp.update); // 修改外部企业信息
+  router.post('/admin/jobfair/corp/delete', controller.admin.jobfairCorp.delete); // 删除外部企业信息
+  router.post('/admin/jobfair/corp/job/add', controller.admin.jobfairCorp.job_add); // 添加企业招聘职位信息
+  router.post('/admin/jobfair/corp/job/update', controller.admin.jobfairCorp.job_update); // 修改企业招聘职位信息
+  router.post('/admin/jobfair/corp/job/delete', controller.admin.jobfairCorp.job_delete); // 删除企业招聘职位信息
   router.get('/admin/jobfair/ticket/count', controller.admin.jobfair.ticket_count); // 统计入场券情况
   router.get('/admin/jobfair/ticket/query', controller.admin.jobfairTicket.query); // 查询入场券情况
   // 校园宣讲会

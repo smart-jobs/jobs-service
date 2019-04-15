@@ -19,6 +19,33 @@ class JobfairCorpService extends CrudService {
   constructor(ctx) {
     super(ctx);
     this.model = this.ctx.model.JobfairCorp;
+    this.mFair = this.ctx.model.Jobfair;
+  }
+
+  // 添加外部企业
+  async create({ fair_id }, { corpname, booth, description, jobs }) {
+    // TODO: coreid应该从token中获取，此处暂时由参数传入
+    assert(corpname, 'corpname不能为空');
+    assert(description, 'description不能为空');
+    // 检查数据
+    assert(fair_id, 'fair_id不能为空');
+
+    // TODO:检查数据是否存在
+    const doc = await this.mFair.findById(ObjectId(fair_id)).exec();
+    if (isNullOrUndefined(doc)) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会信息不存在');
+    }
+
+    // TODO: 检查是否已添加
+    let data = await this.model.findOne({ fair_id, corpname }).exec();
+    if (data) {
+      throw new BusinessError(ErrorCode.DATA_EXISTED, '不能重复添加');
+    }
+
+    // TODO:保存数据
+    data = await this.model.create({ fair_id, corpname, description, booth, jobs, status: JobfairCorpStatus.NORMAL, online: 0, external: 1 });
+
+    return data;
   }
 
   // 审核申请
@@ -99,7 +126,7 @@ class JobfairCorpService extends CrudService {
   }
 
   // 招聘会企业添加职位信息
-  async corp_job_add({ id }, { name, count = 0, requirement }) {
+  async job_add({ id }, { name, count = 0, requirement }) {
     assert(id, '记录ID不能为空');
 
     // TODO:检查数据是否存在
@@ -125,7 +152,7 @@ class JobfairCorpService extends CrudService {
   }
 
   // 招聘会企业修改职位信息
-  async corp_job_update({ job_id }, { name, count = 0, requirement }) {
+  async job_update({ job_id }, { name, count = 0, requirement }) {
     assert(job_id, '职位ID不能为空');
 
     // TODO:检查数据是否存在
@@ -143,7 +170,7 @@ class JobfairCorpService extends CrudService {
   }
 
   // 招聘会企业删除职位信息
-  async corp_job_delete({ job_id }) {
+  async job_delete({ job_id }) {
     assert(job_id, '职位ID不能为空');
 
     // TODO:检查数据是否存在

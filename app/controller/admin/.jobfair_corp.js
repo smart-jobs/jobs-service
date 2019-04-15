@@ -1,4 +1,17 @@
 module.exports = {
+  create: {
+    parameters: {
+      query: ['!fair_id']
+    },
+    requestBody: ['!corpname', '!description', 'booth', 'jobs']
+  },
+  update: {
+    query: ['!id'],
+    requestBody: ['booth', 'description', 'jobs']
+  },
+  delete: {
+    query: ['!id']
+  },
   query: {
     parameters: {
       query: ['!fair_id', 'corpname', 'status']
@@ -23,19 +36,19 @@ module.exports = {
     requestBody: ['!status', 'booth', 'remark'] // 审核状态，展位编号
   },
   // 职位信息：增加、删除、修改
-  corp_job_add: {
+  job_add: {
     parameters: {
       query: ['!id'] // 记录ID
     },
     requestBody: ['!name', 'count', 'requirement']
   },
-  corp_job_update: {
+  job_update: {
     parameters: {
       query: ['!job_id'] // job_id: 企业参会招聘职位记录ID，嵌入文档ID
     },
     requestBody: ['name', 'count', 'requirement']
   },
-  corp_job_delete: {
+  job_delete: {
     query: ['!job_id'] // 企业参会招聘职位记录ID，嵌入文档ID
   }
 };
