@@ -2,6 +2,7 @@
 
 const assert = require('assert');
 const _ = require('lodash');
+const { ObjectId } = require('mongoose').Types;
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
@@ -25,25 +26,15 @@ class JobfairCorpService extends CrudService {
     // console.log(params);
     assert(id, 'id不能为空');
     assert(!isNullOrUndefined(status), 'status不能为空');
-    assert(
-      status === JobfairCorpStatus.NORMAL ||
-        status === JobfairCorpStatus.REJECT,
-      'status无效'
-    );
-    assert(
-      status !== JobfairCorpStatus.NORMAL || !isNullOrUndefined(booth),
-      'booth无效'
-    );
+    assert(status === JobfairCorpStatus.NORMAL || status === JobfairCorpStatus.REJECT, 'status无效');
+    assert(status !== JobfairCorpStatus.NORMAL || !isNullOrUndefined(booth), 'booth无效');
 
     // 查询数据
     const entity = await this.model.findById(id).exec();
     if (isNullOrUndefined(entity)) {
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST);
     }
-    if (
-      entity.status !== JobfairCorpStatus.PENDING &&
-      entity.status !== JobfairCorpStatus.REJECT
-    ) {
+    if (entity.status !== JobfairCorpStatus.PENDING && entity.status !== JobfairCorpStatus.REJECT) {
       throw new BusinessError(ErrorCode.SERVICE_FAULT, '数据状态无效');
     }
 
@@ -105,6 +96,67 @@ class JobfairCorpService extends CrudService {
     xlsx.utils.book_append_sheet(wb, ws);
     xlsx.writeFile(wb, file);
     return { dir, name };
+  }
+
+  // 招聘会企业添加职位信息
+  async corp_job_add({ id }, { name, count = 0, requirement }) {
+    assert(id, '记录ID不能为空');
+
+    // TODO:检查数据是否存在
+    const doc = await this.model.findById(id).exec();
+    if (!doc) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘会企业信息记录不存在');
+    }
+
+    // TODO: 检查招聘职位是否存在
+    if (_.isArray(doc.jobs) && doc.jobs.some(p => p.name === name)) {
+      throw new BusinessError(ErrorCode.DATA_EXISTED, '招聘职位信息已存在');
+    }
+
+    // TODO: 保存数据
+    if (_.isArray(doc.jobs)) {
+      doc.jobs.push({ name, count, requirement });
+    } else {
+      doc.jobs = [{ name, count, requirement }];
+    }
+    await doc.save();
+
+    return doc;
+  }
+
+  // 招聘会企业修改职位信息
+  async corp_job_update({ job_id }, { name, count = 0, requirement }) {
+    assert(job_id, '职位ID不能为空');
+
+    // TODO:检查数据是否存在
+    const doc = await this.model.findOne({ jobs: { $elemMatch: { _id: ObjectId(job_id) } } }).exec();
+    if (!doc) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘职位信息记录不存在');
+    }
+
+    // TODO: 保存数据
+    const subdoc = doc.jobs.id(ObjectId(job_id));
+    Object.assign(subdoc, trimData({ name, count, requirement }));
+    await doc.save();
+
+    return doc;
+  }
+
+  // 招聘会企业删除职位信息
+  async corp_job_delete({ job_id }) {
+    assert(job_id, '职位ID不能为空');
+
+    // TODO:检查数据是否存在
+    const doc = await this.model.findOne({ jobs: { $elemMatch: { _id: ObjectId(job_id) } } }).exec();
+    if (!doc) {
+      throw new BusinessError(ErrorCode.DATA_NOT_EXIST, '招聘职位信息记录不存在');
+    }
+
+    // TODO: 保存数据
+    doc.jobs.id(ObjectId(job_id)).remove();
+    await doc.save();
+
+    return doc;
   }
 }
 

@@ -26,9 +26,12 @@ class LetterGlobalService extends CrudService {
     } else {
       job = await this.service.api.jobfairGlobal.fetch({ id: origin });
     }
+    const typeName = type === '0' ? '招聘信息' : '招聘会信息';
     if (!job) {
-      const typeName = type === '0' ? '招聘信息' : '招聘会信息';
       throw new BusinessError(ErrorCode.DATA_NOT_EXIST, `${typeName}不存在`);
+    }
+    if (job.external === 1 || type === '0' && job.online !== 1) {
+      throw new BusinessError(ErrorCode.DATA_INVALID, '该${job}不支持在线投递简历');
     }
 
     // 使用招聘信息所在分站的租户信息
@@ -57,17 +60,18 @@ class LetterGlobalService extends CrudService {
 
     // TODO: 保存数据
     entity = await model.create({
-      userid, type, origin,
+      userid,
+      type,
+      origin,
       title: job.title || job.subject,
       ...corp,
       content: resume.content,
       info: resume.info,
-      contact: resume.contact,
+      contact: resume.contact
     });
 
     return entity;
   }
-
 }
 
 module.exports = LetterGlobalService;

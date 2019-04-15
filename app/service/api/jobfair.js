@@ -43,6 +43,9 @@ class JobinfoService extends CrudService {
     if (doc.status !== JobfairStatus.OPENING) {
       throw new BusinessError(ErrorCode.DATA_INVALID, '该招聘会已关闭展位预约');
     }
+    if (doc.external === 1) {
+      throw new BusinessError(ErrorCode.DATA_INVALID, '该招聘会不支持在线申请');
+    }
 
     // TODO: 检查是否已申请
     let apply = await this.mCorp.findOne({ fair_id, corpid }).exec();
@@ -57,7 +60,6 @@ class JobinfoService extends CrudService {
   }
 
   async corp_update({ id, fair_id, corpid }, { jobs }) {
-
     // TODO:检查数据是否存在
     const doc = await this.corp_fetch({ id, fair_id, corpid });
     if (isNullOrUndefined(doc)) {
@@ -95,9 +97,7 @@ class JobinfoService extends CrudService {
     assert(corpid, '企业ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    let rs = await this.mCorp.find({ corpid },
-      { fair_id: 1 },
-      { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
+    let rs = await this.mCorp.find({ corpid }, { fair_id: 1 }, { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
     const ids = rs.map(p => ObjectId(p.fair_id));
 
     // TODO: 查询招聘会信息
@@ -109,7 +109,7 @@ class JobinfoService extends CrudService {
       subject: p.subject,
       unit: p.unit,
       date: p.date,
-      time: p.time,
+      time: p.time
     }));
   }
 
@@ -119,9 +119,7 @@ class JobinfoService extends CrudService {
     assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询所有的招聘会ID
-    const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL },
-      { corpid: 1, corpname: 1, jobs: 1 },
-      { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
+    const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL }, { corpid: 1, corpname: 1, jobs: 1 }, { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 
     // TODO: 转换输出数据格式
     return rs;
@@ -129,7 +127,6 @@ class JobinfoService extends CrudService {
 
   // 招聘会企业添加职位信息
   async corp_job_add({ id, fair_id, corpid }, { name, count = 0, requirement }) {
-
     // TODO:检查数据是否存在
     const doc = await this.corp_fetch({ id, fair_id, corpid });
     if (!doc) {
@@ -157,7 +154,7 @@ class JobinfoService extends CrudService {
     return doc;
   }
 
-  // 招聘会企业添加职位信息
+  // 招聘会企业修改职位信息
   async corp_job_update({ job_id, corpid }, { name, count = 0, requirement }) {
     assert(job_id, '职位ID不能为空');
     assert(corpid, '企业ID不能为空');
@@ -203,7 +200,6 @@ class JobinfoService extends CrudService {
 
     return doc;
   }
-
 }
 
 module.exports = JobinfoService;

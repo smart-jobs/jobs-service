@@ -89,6 +89,9 @@ class JobinfoGlobalService extends CrudService {
     if (doc.date < today) {
       throw new BusinessError(ErrorCode.DATA_INVALID, '招聘会已结束');
     }
+    if (doc.external === 1) {
+      throw new BusinessError(ErrorCode.DATA_INVALID, '该招聘会不支持在线申请');
+    }
 
     const { xm, xb, yxdm, yxmc, zydm, zymc, xldm, xl } = user;
 
