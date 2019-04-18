@@ -26,7 +26,7 @@ class JobinfoGlobalService extends CrudService {
 
     // TODO: 查询所有的招聘会ID
     const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL },
-      { corpid: 1, corpname: 1, jobs: 1 },
+      { corpid: 1, corpname: 1, jobs: 1, external: 1, online: 1 },
       { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
 
     // TODO: 转换输出数据格式
