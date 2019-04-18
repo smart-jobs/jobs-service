@@ -60,7 +60,8 @@ module.exports = {
       projection: {
         subject: 1,
         corpname: 1,
-        'meta.createdAt': 1
+        'meta.createdAt': 1,
+        external: 1
       }
     }
   },
@@ -111,7 +112,8 @@ module.exports = {
         subject: 1,
         corpname: 1,
         unit: 1,
-        'meta.createdAt': 1
+        'meta.createdAt': 1,
+        external: 1
       }
     }
   },

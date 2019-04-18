@@ -1,41 +1,41 @@
 module.exports = {
-  "create": {
-    "requestBody": ["corpid", "!corpname", "!title", "content", "city", "expired", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs", "online"]
+  create: {
+    requestBody: ['corpid', '!corpname', '!title', 'content', 'city', 'expired', 'count', 'jobdesc', 'jobcat', 'nature', 'salary', 'xlreqs', 'zyreqs', 'online']
   },
-  "update": {
-    "query": ["!id"],
-    "requestBody": ["corpname", "title", "content", "city", "expired", "count", "jobdesc", "jobcat", "nature", "salary", "xlreqs", "zyreqs", "online"]
+  update: {
+    query: ['!id'],
+    requestBody: ['corpname', 'title', 'content', 'city', 'expired', 'count', 'jobdesc', 'jobcat', 'nature', 'salary', 'xlreqs', 'zyreqs', 'online']
   },
-  "delete": {
-    "query": ["!id"]
+  delete: {
+    query: ['!id']
   },
-  "review": {
-    "parameters": {
-      "query": ["!id"]
+  review: {
+    parameters: {
+      query: ['!id']
     },
-    "requestBody": ["!status"]
+    requestBody: ['!status']
   },
-  "query": {
-    "parameters": {
-      "query": ["status", "corpname", "external"]
+  query: {
+    parameters: {
+      query: ['status', 'corpname', 'external']
     },
-    "service": "query",
-    "options": {
-      "query": ["skip", "limit"],
-      "sort": ["meta.createdAt"],
-      "desc": true,
-      "count": true,
-      "projection": {
-        "content": 0
+    service: 'query',
+    options: {
+      query: ['skip', 'limit'],
+      sort: ['meta.createdAt'],
+      desc: true,
+      count: true,
+      projection: {
+        content: 0
       }
     }
   },
-  "fetch": {
-    "parameters": {
-      "query": ["!id"]
+  fetch: {
+    parameters: {
+      query: ['!id']
     },
-    "options": {
-      "projection": "+content"
-    },
+    options: {
+      projection: '+content'
+    }
   }
 };
