@@ -19,7 +19,7 @@ module.exports = {
     options: {
       query: ['skip', 'limit'],
       sort: ['meta.createdAt'],
-      desc: true,
+      desc: false,
       count: true
     }
   },

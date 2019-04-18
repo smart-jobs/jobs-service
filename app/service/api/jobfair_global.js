@@ -20,14 +20,14 @@ class JobinfoGlobalService extends CrudService {
   }
 
   // 查询招聘会包含的参展企业列表（审核通过的企业）
-  async corp_list({ fair_id }, { skip = 0, limit = 100 }) {
+  async corp_list({ fair_id }, { skip = 0, limit = 500 }) {
     // TODO: coreid应该从token中获取，此处暂时由参数传入
     assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询所有的招聘会ID
     const rs = await this.mCorp.find({ fair_id, status: JobfairCorpStatus.NORMAL },
       { corpid: 1, corpname: 1, jobs: 1, external: 1, online: 1 },
-      { skip, limit, sort: { 'meta.createdAt': -1 } }).exec();
+      { skip, limit, sort: { 'meta.createdAt': 1 } }).exec();
 
     // TODO: 转换输出数据格式
     return rs;
