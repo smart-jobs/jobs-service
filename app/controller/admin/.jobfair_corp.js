@@ -26,6 +26,9 @@ module.exports = {
   fetch: {
     parameters: {
       query: ['!id']
+    },
+    options: {
+      projection: '+description'
     }
   },
   // 审核参展企业信息
