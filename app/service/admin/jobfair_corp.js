@@ -78,7 +78,7 @@ class JobfairCorpService extends CrudService {
     // 检查数据
     assert(_.isString(fair_id), 'fairid不能为空');
 
-    // TODO: 读取公文信息和发文信息
+    // TODO: 读取数据
     let rs = await this.model
       .find(trimData({ fair_id, status }), null, {
         limit: 500,
