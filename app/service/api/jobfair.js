@@ -28,7 +28,7 @@ class JobinfoService extends CrudService {
     assert(fair_id, '招聘会ID不能为空');
 
     // TODO: 查询企业信息
-    const corp = await this.service.axios.corp.fetch({ corpid }, '+description');
+    const corp = await this.service.axios.corp.fetch({ corpid });
     if (!corp) {
       throw new BusinessError(ErrorCode.USER_NOT_EXIST, '企业信息不存在');
     }
